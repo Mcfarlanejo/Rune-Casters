@@ -539,6 +539,8 @@ MonoBehaviour:
   rotationJoystick: {fileID: 317225535}
   firePoint: {fileID: 1303153458}
   currentSpell: {fileID: 630479719083813506, guid: 2caa40565c817af40b014085f8e3be05, type: 3}
+  spells:
+  - {fileID: 0}
 --- !u!1001 &1291102535
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileSpell : CraftedSpell
+public class ProjectileSpell : Spell
 {
     public int damage;
     public int range;
@@ -11,5 +11,6 @@ public class ProjectileSpell : CraftedSpell
 
     public override void CalculateStats()
     {
+
     }
 }

@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public List<Spell> spells = new List<Spell>();
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
