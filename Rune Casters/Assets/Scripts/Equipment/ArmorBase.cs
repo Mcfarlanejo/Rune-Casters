@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ArmorBase : EquipmentBase
 {
-    public int defence;
-    public int defenceMax;
     public int defenceMin;
+    public int defenceMax;
 }
