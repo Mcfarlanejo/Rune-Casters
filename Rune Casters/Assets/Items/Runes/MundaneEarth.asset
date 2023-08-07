@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MundaneEarth
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  element: 0
+  element: 2
   rarity: 0
-  buyCost: 0
-  sellCost: 0
+  buyCost: 100
+  sellCost: 10
