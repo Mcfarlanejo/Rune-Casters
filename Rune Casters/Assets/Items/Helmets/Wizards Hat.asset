@@ -12,19 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b117044b9ee7248865ca68917b91b2, type: 3}
   m_Name: Wizards Hat
   m_EditorClassIdentifier: 
+  image: {fileID: 0}
   element: 0
   rarity: 0
-  buyCost: 0
-  sellCost: 0
-  equipmentType: 0
-  defenceMin: 0
-  defenceMax: 0
+  buyCost: 100
+  sellCost: 10
+  equipmentType: 1
+  defenceMin: 3
+  defenceMax: 6
   defencePercentageMin: 0
   defencePercentageMax: 0
   damageMin: 0
   damageMax: 0
-  damagePercentageMin: 0
-  damagePercentageMax: 0
+  damagePercentageMin: 1
+  damagePercentageMax: 5
   castSpeedMin: 0
   castSpeedMax: 0
   castSpeedPercentageMin: 0
