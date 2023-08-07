@@ -29,6 +29,7 @@ public class ItemObject : MonoBehaviour
 
     private void AssignValues()
     {
+        GetComponent<SpriteRenderer>().sprite = baseItem.image;
         equipmentType = baseItem.equipmentType;
         element = baseItem.element;
         rarity = baseItem.rarity;

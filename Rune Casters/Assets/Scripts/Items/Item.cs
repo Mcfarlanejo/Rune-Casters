@@ -6,6 +6,7 @@ public enum Element { Basic, Fire, Earth, Water, Wind }
 public enum Rarity { Mundane, Common, Rare, Mystic, Primordial}
 public class Item : ScriptableObject
 {
+    public Sprite image;
     public Element element;
     public Rarity rarity;
 
