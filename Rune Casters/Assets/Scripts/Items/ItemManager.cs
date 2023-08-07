@@ -35,15 +35,29 @@ public class ItemManager : MonoBehaviour
     public List<ItemObject> inventory = new List<ItemObject>();
     public List<RuneCount> runeBag = new List<RuneCount>();
 
+    public int coins = 0;
+
     // Start is called before the first frame update
-    void Start()
+    public void AddItem(ItemObject newItem)
     {
-        
+        inventory.Add(newItem);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EquipItem(ItemObject item)
     {
-        
+        foreach (ItemObject i in equipment)
+        {
+            if (i.equipmentType == item.equipmentType)
+            {
+                PlayerStats.instance.EquipmentChanged(item, i);
+                return;
+            }
+        }
+        equipment.Add(item);
+    }
+
+    public void AddCoins(int value)
+    {
+        coins += value;
     }
 }

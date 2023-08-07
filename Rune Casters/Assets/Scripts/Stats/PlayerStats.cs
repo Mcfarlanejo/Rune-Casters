@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats
 {
+    #region Singleton
+    public static PlayerStats instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<PlayerStats>();
+            }
+            return _instance;
+        }
+    }
+    static PlayerStats _instance;
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+    #endregion
     public void EquipmentChanged(ItemObject newItem, ItemObject oldItem)
     {
         if (oldItem != null)

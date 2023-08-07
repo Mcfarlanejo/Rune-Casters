@@ -31,6 +31,7 @@ public class ItemObject : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = baseItem.image;
         equipmentType = baseItem.equipmentType;
+
         element = baseItem.element;
         rarity = baseItem.rarity;
         buyCost = baseItem.buyCost;
