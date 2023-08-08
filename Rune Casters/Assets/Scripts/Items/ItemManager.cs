@@ -45,15 +45,24 @@ public class ItemManager : MonoBehaviour
 
     public void EquipItem(ItemObject item)
     {
+        ItemObject oldItem = null;
         foreach (ItemObject i in equipment)
         {
             if (i.equipmentType == item.equipmentType)
             {
-                PlayerStats.instance.EquipmentChanged(item, i);
-                return;
+                oldItem = i;
             }
         }
+        if (oldItem != null)
+        {
+            equipment.Remove(oldItem);
+            inventory.Add(oldItem);
+        }
+
         equipment.Add(item);
+        inventory.Remove(item);
+        
+        PlayerStats.instance.EquipmentChanged(item, oldItem);
     }
 
     public void AddCoins(int value)
