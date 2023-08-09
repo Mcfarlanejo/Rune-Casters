@@ -8,8 +8,6 @@ public class UIManager : MonoBehaviour
 {
     public Button quitButton;
     public Button resumeButton;
-    public GameObject pauseMenu;
-    public GameObject joysticks;
 
     private void Start()
     {
@@ -20,8 +18,6 @@ public class UIManager : MonoBehaviour
     private void Resume()
     {
         Time.timeScale = 1.0f;
-        pauseMenu.SetActive(false);
-
     }
 
     private void Quit()
