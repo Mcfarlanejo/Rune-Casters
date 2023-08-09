@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,13 +30,13 @@ public class ItemFocus : MonoBehaviour
     public ItemObject item;
 
     public Image image;
-    public TMPro.TextMeshPro itemName;
-    public TMPro.TextMeshPro rarityType;
-    public TMPro.TextMeshPro primaryStatText;
-    public TMPro.TextMeshPro primaryStatValue;
-    public TMPro.TextMeshPro secondaryStatText;
-    public TMPro.TextMeshPro secondaryStatValue;
-    public TMPro.TextMeshPro sellPrice;
+    public TMP_Text itemName;
+    public TMP_Text rarityType;
+    public TMP_Text primaryStatText;
+    public TMP_Text primaryStatValue;
+    public TMP_Text secondaryStatText;
+    public TMP_Text secondaryStatValue;
+    public TMP_Text sellPrice;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,8 +54,9 @@ public class ItemFocus : MonoBehaviour
         item = newItem;
 
         image.sprite = item.baseItem.image;
-        itemName.text = item.name;
+        itemName.text = item.baseItem.name;
         rarityType.text = $"{item.rarity} {item.equipmentType}";
+        sellPrice.text = $"Sell Price: {item.baseItem.sellCost}";
 
         switch (item.equipmentType)
         {

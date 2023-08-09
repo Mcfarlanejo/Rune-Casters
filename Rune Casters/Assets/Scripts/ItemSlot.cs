@@ -6,28 +6,38 @@ using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
+    public ItemFocus itemFocus;
     public ItemObject item;
-    public Sprite image;
+    public Image image;
     public Button button;
 
     // Start is called before the first frame update
     void Start()
     {
-        image = gameObject.GetComponentInChildren<Image>().sprite;
+        itemFocus = ItemFocus.instance;
+        //image = gameObject.GetComponentInChildren<Image>();
         button = GetComponent<Button>();
 
         if (item != null)
         {
-            image = item.baseItem.image;
+            image.sprite = item.baseItem.image;
         }
         
         button.onClick.AddListener(ShowItemFocus);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (item != null)
+        {
+            image.color = Color.white;
+        }
+    }
+
+    // Update is called once per frame
+    public void UpdateItem()
+    {
+        image.sprite = item.baseItem.image;
     }
     
     private void ShowItemFocus()
@@ -35,7 +45,7 @@ public class ItemSlot : MonoBehaviour
         if (item != null)
         {
             //ItemFocus.instance.gameObject.SetActive(true);
-            ItemFocus.instance.ChangeItem(item);
+            itemFocus.ChangeItem(item);
         }
     }
 }
