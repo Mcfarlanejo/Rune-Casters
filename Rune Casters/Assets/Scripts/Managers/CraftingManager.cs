@@ -15,6 +15,14 @@ public class CraftingManager : MonoBehaviour
     public Button[] rarityButtons;
     public TMP_Text[] quantityTexts;
 
+    public Image elementImage;
+    public TMP_Text elementText;
+    public TMP_Text elementRarity;
+
+    public Image castingImage;
+    public TMP_Text castingText;
+    public TMP_Text castingRarity;
+
     private int runeIndex = 0;
 
     // Start is called before the first frame update
@@ -49,6 +57,17 @@ public class CraftingManager : MonoBehaviour
                     if (runeOption.ToString() == rune.rune.castingType.ToString() && (int)rune.rune.rarity == rarityIndex)
                     {
                         quantityTexts[i].text = rune.count.ToString();
+                        castingImage.sprite = rune.rune.image;
+                        castingText.text = runeOption.ToString();
+
+                        if (rune.count == 0)
+                        {
+                            rarityButtons[i].interactable = false;
+                        }
+                        else
+                        {
+                            rarityButtons[i].interactable = true;
+                        }
                     }
                 }
             }
@@ -59,13 +78,36 @@ public class CraftingManager : MonoBehaviour
                     if (runeOption.ToString() == rune.rune.element.ToString() && (int)rune.rune.rarity == rarityIndex)
                     {
                         quantityTexts[i].text = rune.count.ToString();
+                        elementImage.sprite = rune.rune.image;
+                        elementText.text = runeOption.ToString();
+
+                        if (rune.count == 0)
+                        {
+                            rarityButtons[i].interactable = false;
+                        }
+                        else
+                        {
+                            rarityButtons[i].interactable = true;
+                        }
                     }
                 }
             }
             rarityIndex++;
         }
     }
-    
+
+    private void UpdateResults(Rarity rarity)
+    {
+        if (runeIndex < 3)
+        {
+            castingRarity.text = rarity.ToString();
+        }
+        else
+        {
+            elementRarity.text = rarity.ToString();
+        }
+    }
+
     private void UpdateDisplay()
     {
         for (int i = 0; i < runeButtons.Length; i++)
@@ -128,5 +170,30 @@ public class CraftingManager : MonoBehaviour
         runeIndex = 6;
         DisplayCounts();
         UpdateDisplay();
+    }
+
+    public void MundaneButton()
+    {
+        UpdateResults(Rarity.Mundane);
+    }
+
+    public void CommonButton()
+    {
+        UpdateResults(Rarity.Common);
+    }
+
+    public void RareButton()
+    {
+        UpdateResults(Rarity.Rare);
+    }
+
+    public void MysticButton()
+    {
+        UpdateResults(Rarity.Mystic);
+    }
+
+    public void PrimordialButton()
+    {
+        UpdateResults(Rarity.Primordial);
     }
 }
