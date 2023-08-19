@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class RuneCount
+public class ElementalRuneCount
 {
     public Rune rune;
+    public int count;
+}
+
+[System.Serializable]
+public class CastingRuneCount
+{
+    public CastingRune rune;
     public int count;
 }
 
@@ -33,7 +40,8 @@ public class ItemManager : MonoBehaviour
 
     public List<ItemObject> equipment =  new List<ItemObject>();
     public List<ItemObject> inventory = new List<ItemObject>();
-    public List<RuneCount> runeBag = new List<RuneCount>();
+    public List<ElementalRuneCount> elementalRuneBag = new List<ElementalRuneCount>();
+    public List<CastingRuneCount> castingRuneBag = new List<CastingRuneCount>();
 
     public int coins = 0;
 
