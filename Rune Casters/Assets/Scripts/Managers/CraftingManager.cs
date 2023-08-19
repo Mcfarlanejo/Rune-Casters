@@ -11,6 +11,7 @@ public class CraftingManager : MonoBehaviour
 {
     public Button craftingMenuButton;
 
+    public Button[] runeButtons;
     public Button[] rarityButtons;
     public TMP_Text[] quantityTexts;
 
@@ -31,7 +32,7 @@ public class CraftingManager : MonoBehaviour
 
     public void OnOpen()
     {
-        DisplayCounts();
+        ProjectileButton();
     }
 
     private void DisplayCounts()
@@ -64,46 +65,68 @@ public class CraftingManager : MonoBehaviour
             rarityIndex++;
         }
     }
+    
+    private void UpdateDisplay()
+    {
+        for (int i = 0; i < runeButtons.Length; i++)
+        {
+            if (i != runeIndex)
+            {
+                runeButtons[i].GetComponent<Image>().enabled = false;
+            }
+            else
+            {
+                runeButtons[i].GetComponent<Image>().enabled = true;
+            }
+        }
+    }
 
     public void ProjectileButton()
     {
         runeIndex = 0;
         DisplayCounts();
+        UpdateDisplay();
     }
 
     public void AOEButton()
     {
         runeIndex = 1;
         DisplayCounts();
+        UpdateDisplay();
     }
 
     public void SelfButton()
     {
         runeIndex = 2;
         DisplayCounts();
+        UpdateDisplay();
     }
 
     public void FireButton()
     {
         runeIndex = 3;
         DisplayCounts();
+        UpdateDisplay();
     }
 
     public void EarthButton()
     {
         runeIndex = 4;
         DisplayCounts();
+        UpdateDisplay();
     }
 
     public void WaterButton()
     {
         runeIndex = 5;
         DisplayCounts();
+        UpdateDisplay();
     }
 
     public void WindButton()
     {
         runeIndex = 6;
         DisplayCounts();
+        UpdateDisplay();
     }
 }
