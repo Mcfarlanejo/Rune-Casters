@@ -18,17 +18,29 @@ public class CraftingManager : MonoBehaviour
     public Image elementImage;
     public TMP_Text elementText;
     public TMP_Text elementRarity;
+    public Rarity eRarity;
     public TMP_Text elementCount;
 
     public Image castingImage;
     public TMP_Text castingText;
     public TMP_Text castingRarity;
+    public Rarity cRarity;
     public TMP_Text castingCount;
 
     public Image resultImage;
     public TMP_Text resultText;
     public TMP_Text resultRarity;
     public GameObject spellHolder;
+    public CastingType resultingCastingType;
+    public Element resultingElement;
+    public Rarity resultingRarity;
+    public Sprite projectileSprite;
+    public Sprite selfSprite;
+    public Sprite AOESprite;
+
+    public GameObject cross;
+    public GameObject plus;
+    public Button createButton;
 
     private int runeIndex = 0;
 
@@ -42,7 +54,38 @@ public class CraftingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch (resultingCastingType)
+        {
+            case CastingType.Projectile:
+                resultImage.sprite = projectileSprite;
+                break;
+            case CastingType.AOE:
+                resultImage.sprite = AOESprite;
+                break;
+            case CastingType.Self:
+                resultImage.sprite = selfSprite;
+                break;
+            default:
+                break;
+        }
+
+        switch (resultingElement)
+        {
+            case Element.Fire:
+                resultImage.color = Color.red;
+                break;
+            case Element.Earth:
+                resultImage.color = new Color32(154, 73, 0, 255);
+                break;
+            case Element.Water:
+                resultImage.color = Color.blue;
+                break;
+            case Element.Wind:
+                resultImage.color = Color.green;
+                break;
+            default:
+                break;
+        }
     }
 
     public void OnOpen()
@@ -66,6 +109,7 @@ public class CraftingManager : MonoBehaviour
                         quantityTexts[i].text = rune.count.ToString();
                         castingImage.sprite = rune.rune.image;
                         castingText.text = runeOption.ToString();
+                        resultingCastingType = rune.rune.castingType;
 
                         if (rune.count == 0)
                         {
@@ -87,6 +131,7 @@ public class CraftingManager : MonoBehaviour
                         quantityTexts[i].text = rune.count.ToString();
                         elementImage.sprite = rune.rune.image;
                         elementText.text = runeOption.ToString();
+                        resultingElement = rune.rune.element;
 
                         if (rune.count == 0)
                         {
@@ -105,14 +150,30 @@ public class CraftingManager : MonoBehaviour
 
     private void UpdateResults(Rarity rarity)
     {
-        if (runeIndex < 3)
+        if (runeIndex < 3 )
         {
             castingRarity.text = rarity.ToString();
+            cRarity = rarity;
         }
         else
         {
             elementRarity.text = rarity.ToString();
+            eRarity = rarity;
         }
+
+        if (castingRarity.text == elementRarity.text)
+        {
+            resultingRarity = rarity;
+            cross.SetActive(false);
+            plus.SetActive(true);
+        }
+        else if (castingRarity.text != "-" && elementRarity.text != "-")
+        {
+            Debug.Log("Rarity must match");
+            cross.SetActive(true);
+            plus.SetActive(false);
+        }
+        
     }
 
     private void UpdateDisplay()
@@ -141,7 +202,7 @@ public class CraftingManager : MonoBehaviour
 
     public void AddElement()
     {
-        if (Convert.ToUInt32(elementCount.text) < 10)
+        if (Convert.ToUInt32(elementCount.text) < 10 && Convert.ToInt32(quantityTexts[(int)eRarity].text) >= Convert.ToInt32(elementCount.text) + 1 && !cross.activeInHierarchy)
         {
             elementCount.text = (Convert.ToInt32(elementCount.text) + 1).ToString();
         }
@@ -157,7 +218,7 @@ public class CraftingManager : MonoBehaviour
 
     public void AddCasting()
     {
-        if (Convert.ToUInt32(castingCount.text) < 10)
+        if (Convert.ToUInt32(castingCount.text) < 10 && Convert.ToInt32(quantityTexts[(int)cRarity].text) >= Convert.ToInt32(castingCount.text) + 1 && !cross.activeInHierarchy)
         {
             castingCount.text = (Convert.ToInt32(castingCount.text) + 1).ToString();
         }
@@ -168,6 +229,7 @@ public class CraftingManager : MonoBehaviour
         runeIndex = 0;
         DisplayCounts();
         UpdateDisplay();
+        castingRarity.text = "-";
     }
 
     public void AOEButton()
@@ -175,6 +237,7 @@ public class CraftingManager : MonoBehaviour
         runeIndex = 1;
         DisplayCounts();
         UpdateDisplay();
+        castingRarity.text = "-";
     }
 
     public void SelfButton()
@@ -182,6 +245,7 @@ public class CraftingManager : MonoBehaviour
         runeIndex = 2;
         DisplayCounts();
         UpdateDisplay();
+        castingRarity.text = "-";
     }
 
     public void FireButton()
@@ -189,6 +253,7 @@ public class CraftingManager : MonoBehaviour
         runeIndex = 3;
         DisplayCounts();
         UpdateDisplay();
+        elementRarity.text = "-";
     }
 
     public void EarthButton()
@@ -196,6 +261,7 @@ public class CraftingManager : MonoBehaviour
         runeIndex = 4;
         DisplayCounts();
         UpdateDisplay();
+        elementRarity.text = "-";
     }
 
     public void WaterButton()
@@ -203,6 +269,7 @@ public class CraftingManager : MonoBehaviour
         runeIndex = 5;
         DisplayCounts();
         UpdateDisplay();
+        elementRarity.text = "-";
     }
 
     public void WindButton()
@@ -210,6 +277,7 @@ public class CraftingManager : MonoBehaviour
         runeIndex = 6;
         DisplayCounts();
         UpdateDisplay();
+        elementRarity.text = "-";
     }
 
     public void MundaneButton()

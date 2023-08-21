@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f0d72757d908c4794534d0b60a5e92, type: 3}
   m_Name: MysticFire
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 1484365518, guid: 4178fedc1339a7c4aaeaa7512c8df5c2, type: 3}
   element: 1
   rarity: 3
   buyCost: 2500

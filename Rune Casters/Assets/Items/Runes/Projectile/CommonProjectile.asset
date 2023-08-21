@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ee76f4e64ad804da86884dd1516821, type: 3}
   m_Name: CommonProjectile
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 151018614, guid: 36ff3f5e339a31b47a19e17df46254b1, type: 3}
   element: 0
   rarity: 1
   buyCost: 250
