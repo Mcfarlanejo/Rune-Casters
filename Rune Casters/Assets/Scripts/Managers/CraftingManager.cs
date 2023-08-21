@@ -23,6 +23,10 @@ public class CraftingManager : MonoBehaviour
     public TMP_Text castingText;
     public TMP_Text castingRarity;
 
+    public Image resultImage;
+    public TMP_Text resultText;
+    public TMP_Text resultRarity;
+
     private int runeIndex = 0;
 
     // Start is called before the first frame update

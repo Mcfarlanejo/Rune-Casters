@@ -49,12 +49,13 @@ public class PlayerController : MonoBehaviour
     private void Fire()
     {
         GameObject newSpell = Instantiate(currentSpell, firePoint.position, firePoint.rotation);
+        newSpell.GetComponent<Projectile>().parent = gameObject;
         newSpell.GetComponent<Projectile>().SetValues();
     }
 
     private IEnumerator FireDelay()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
         canAttack = true;
     }
 }

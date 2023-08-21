@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    public GameObject damageNumberPrefab;
+
     public int maxHealth = 50;
     public int currentHealth;
 
@@ -18,6 +21,7 @@ public class CharacterStats : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = maxHealth;
         if (gameObject.tag != "Enemy")
         {
 
@@ -32,12 +36,14 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         damage = damage - defence.GetValue();
         damage = Mathf.Clamp(damage, 1, int.MaxValue);
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, int.MaxValue);
+
+        ShowDamageNumber(damage);
 
         if (currentHealth <= 0)
         {
@@ -45,11 +51,19 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    private void ShowDamageNumber(int damage)
+    {
+        GameObject damageNumber = Instantiate(damageNumberPrefab);
+        damageNumber.transform.position = gameObject.transform.position;
+        damageNumber.GetComponent<TMP_Text>().text = damage.ToString();
+        damageNumber.GetComponent<DamageNumbers>().parent = gameObject;
+    }
+
     public virtual void Die()
     {
         if (gameObject.tag == "Enemy")
         {
-
+            Destroy(gameObject);
         }
     }
 }
