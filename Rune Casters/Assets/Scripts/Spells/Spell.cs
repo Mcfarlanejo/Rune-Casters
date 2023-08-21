@@ -5,8 +5,11 @@ using UnityEngine;
 
 public abstract class Spell : MonoBehaviour
 {
-    public List<Rune> elementalRunes = new List<Rune>();
-    public List<CastingRune> castingRunes = new List<CastingRune>();
+    public Rune[] elementalRunes = new Rune[10];
+    public CastingRune[] castingRunes = new CastingRune[10];
+
+    public Element element;
+    public Rarity rarity;
     private void Start()
     {
         CalculateStats();

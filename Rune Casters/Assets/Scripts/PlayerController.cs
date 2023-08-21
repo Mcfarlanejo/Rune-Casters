@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
     {
         GameObject newSpell = Instantiate(currentSpell, firePoint.position, firePoint.rotation);
         newSpell.GetComponent<Projectile>().parent = gameObject;
-        newSpell.GetComponent<Projectile>().SetValues();
     }
 
     private IEnumerator FireDelay()

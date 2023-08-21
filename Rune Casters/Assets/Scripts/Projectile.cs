@@ -14,12 +14,17 @@ public class Projectile : MonoBehaviour
     public Color colour;
     public float speed;
     public float range;
+    public ProjectileSpell spell;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
         //colour = GetComponent<SpriteRenderer>().color;
+    }
+
+    private void Start()
+    {
+        SetValues();
     }
 
     private void SetColour()
@@ -49,20 +54,26 @@ public class Projectile : MonoBehaviour
 
     public void SetValues()
     {
+        element = spell.element;
+
         if (parent != null && parent.tag != "Enemy")
         {
             PlayerStats stats = parent.GetComponent<PlayerStats>();
-            damage = stats.damage.GetValue();
+            damage = (stats.damage.GetValue() + spell.damage) * (stats.damagePercentage.GetValue()/100 + 1);
         }
         else
         {
             CharacterStats stats = parent.GetComponent<CharacterStats>();
             damage = stats.damage.GetValue();
         }
-        speed = 10;
-        range = 10;
+
+        speed = spell.speed;
+        range = spell.range;
+
         startPos = transform.position;
+
         SetColour();
+
         rb.velocity = transform.position * speed;
     }
 
