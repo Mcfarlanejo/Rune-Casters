@@ -18,14 +18,17 @@ public class CraftingManager : MonoBehaviour
     public Image elementImage;
     public TMP_Text elementText;
     public TMP_Text elementRarity;
+    public TMP_Text elementCount;
 
     public Image castingImage;
     public TMP_Text castingText;
     public TMP_Text castingRarity;
+    public TMP_Text castingCount;
 
     public Image resultImage;
     public TMP_Text resultText;
     public TMP_Text resultRarity;
+    public GameObject spellHolder;
 
     private int runeIndex = 0;
 
@@ -124,6 +127,39 @@ public class CraftingManager : MonoBehaviour
             {
                 runeButtons[i].GetComponent<Image>().enabled = true;
             }
+        }
+    }
+
+    public void RemoveElement()
+    {
+        if (Convert.ToUInt32(elementCount.text) > 0)
+        {
+            elementCount.text = (Convert.ToInt32(elementCount.text)-1).ToString();
+        }
+        
+    }
+
+    public void AddElement()
+    {
+        if (Convert.ToUInt32(elementCount.text) < 10)
+        {
+            elementCount.text = (Convert.ToInt32(elementCount.text) + 1).ToString();
+        }
+    }
+
+    public void RemoveCasting()
+    {
+        if (Convert.ToUInt32(castingCount.text) > 0)
+        {
+            castingCount.text = (Convert.ToInt32(castingCount.text) - 1).ToString();
+        }
+    }
+
+    public void AddCasting()
+    {
+        if (Convert.ToUInt32(castingCount.text) < 10)
+        {
+            castingCount.text = (Convert.ToInt32(castingCount.text) + 1).ToString();
         }
     }
 
