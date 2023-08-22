@@ -139,10 +139,17 @@ public class CraftingManager : MonoBehaviour
             case CastingType.Projectile:
                 ProjectileSpell newProjectile = newSpell.AddComponent<ProjectileSpell>();
                 AddRunes(newProjectile);
+                newProjectile.CalculateStats();
                 break;
             case CastingType.AOE:
+                AOESpell newAOE = newSpell.AddComponent<AOESpell>();
+                AddRunes(newAOE);
+                newAOE.CalculateStats();
                 break;
             case CastingType.Self:
+                SelfSpell newSelf = newSpell.AddComponent<SelfSpell>();
+                AddRunes(newSelf);
+                newSelf.CalculateStats();
                 break;
             default:
                 break;
@@ -180,13 +187,18 @@ public class CraftingManager : MonoBehaviour
 
     private void AddRunes(Spell spell)
     {
+        var elementalRune = elementalRunes.Find(x => x.element == resultingElement && x.rarity == resultingRarity);
+        
         for (int i = 0; i < Convert.ToInt32(elementCount.text); i++)
         {
-            //spell.elementalRunes[i] = ;
+            spell.elementalRunes[i] = elementalRune;
         }
+
+        var castingRune = castingRunes.Find(x => x.castingType == resultingCastingType && x.rarity == resultingRarity);
+
         for (int i = 0; i < Convert.ToInt32(castingCount.text); i++)
         {
-            spell.castingRunes[i] = (CastingRune)ScriptableObject.CreateInstance($"{resultingRarity}{resultingCastingType}");
+            spell.castingRunes[i] = castingRune;
         }
     }
 

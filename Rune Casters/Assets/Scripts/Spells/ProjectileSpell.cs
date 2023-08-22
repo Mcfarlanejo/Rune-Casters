@@ -6,21 +6,21 @@ using Random = UnityEngine.Random;
 
 public class ProjectileSpell : Spell
 {
-    public int damage;
-    public int damageMin;
-    public int damageMax;
+    public int damage = 0;
+    public int damageMin = 1;
+    public int damageMax = 10;
 
-    public int range;
-    public int rangeMin;
-    public int rangeMax;
+    public int range = 0;
+    public int rangeMin = 5;
+    public int rangeMax = 10;
 
-    public int speed;
-    public int speedMin;
-    public int speedMax;
+    public int speed = 0;
+    public int speedMin = 1;
+    public int speedMax = 10;
 
-    public int castDelay;
-    public int castDelayMin;
-    public int castDelayMax;
+    public int castDelay = 0;
+    public int castDelayMin = 1;
+    public int castDelayMax = 10;
 
     public override void CalculateStats()
     {
