@@ -20,12 +20,14 @@ public class CraftingManager : MonoBehaviour
     public TMP_Text elementRarity;
     public Rarity eRarity;
     public TMP_Text elementCount;
+    private int[] currentElementTotals = new int[5]; 
 
     public Image castingImage;
     public TMP_Text castingText;
     public TMP_Text castingRarity;
     public Rarity cRarity;
     public TMP_Text castingCount;
+    private int[] currentCastingTotals = new int[5];
 
     public Image resultImage;
     public TMP_Text resultText;
@@ -107,6 +109,7 @@ public class CraftingManager : MonoBehaviour
                     if (runeOption.ToString() == rune.rune.castingType.ToString() && (int)rune.rune.rarity == rarityIndex)
                     {
                         quantityTexts[i].text = rune.count.ToString();
+                        currentCastingTotals[i] = rune.count;
                         castingImage.sprite = rune.rune.image;
                         castingText.text = runeOption.ToString();
                         resultingCastingType = rune.rune.castingType;
@@ -129,6 +132,7 @@ public class CraftingManager : MonoBehaviour
                     if (runeOption.ToString() == rune.rune.element.ToString() && (int)rune.rune.rarity == rarityIndex)
                     {
                         quantityTexts[i].text = rune.count.ToString();
+                        currentElementTotals[i] = rune.count;
                         elementImage.sprite = rune.rune.image;
                         elementText.text = runeOption.ToString();
                         resultingElement = rune.rune.element;
@@ -202,7 +206,7 @@ public class CraftingManager : MonoBehaviour
 
     public void AddElement()
     {
-        if (Convert.ToUInt32(elementCount.text) < 10 && Convert.ToInt32(quantityTexts[(int)eRarity].text) >= Convert.ToInt32(elementCount.text) + 1 && !cross.activeInHierarchy)
+        if (Convert.ToUInt32(elementCount.text) < 10 && currentElementTotals[(int)eRarity] >= Convert.ToInt32(elementCount.text) + 1 && !cross.activeInHierarchy)
         {
             elementCount.text = (Convert.ToInt32(elementCount.text) + 1).ToString();
         }
@@ -218,7 +222,7 @@ public class CraftingManager : MonoBehaviour
 
     public void AddCasting()
     {
-        if (Convert.ToUInt32(castingCount.text) < 10 && Convert.ToInt32(quantityTexts[(int)cRarity].text) >= Convert.ToInt32(castingCount.text) + 1 && !cross.activeInHierarchy)
+        if (Convert.ToUInt32(castingCount.text) < 10 && currentCastingTotals[(int)cRarity] >= Convert.ToInt32(castingCount.text) + 1 && !cross.activeInHierarchy)
         {
             castingCount.text = (Convert.ToInt32(castingCount.text) + 1).ToString();
         }
