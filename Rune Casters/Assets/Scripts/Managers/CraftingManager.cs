@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,7 @@ public class CraftingManager : MonoBehaviour
     public TMP_Text resultText;
     public TMP_Text resultRarity;
     public GameObject spellHolder;
+    public GameObject spellBook;
     public CastingType resultingCastingType;
     public Element resultingElement;
     public Rarity resultingRarity;
@@ -44,6 +46,9 @@ public class CraftingManager : MonoBehaviour
     public GameObject plus;
     public Button createButton;
 
+    public List<Rune> elementalRunes = new List<Rune>();
+    public List<CastingRune> castingRunes = new List<CastingRune>();
+
     private int runeIndex = 0;
 
     // Start is called before the first frame update
@@ -51,6 +56,27 @@ public class CraftingManager : MonoBehaviour
     {
         craftingMenuButton.onClick.AddListener(OnOpen);
         OnOpen();
+        LoadRunes();
+    }
+
+    private void LoadRunes()
+    {
+        string[] guids = AssetDatabase.FindAssets("t:Rune", null);
+
+        foreach (string id in guids)
+        {
+            Rune rune = AssetDatabase.LoadAssetAtPath<Rune>(AssetDatabase.GUIDToAssetPath(id));
+            if (rune is CastingRune)
+            {
+                Debug.Log("Casting");
+                castingRunes.Add(rune as CastingRune);
+            }
+            else
+            {
+                Debug.Log("Element");
+                elementalRunes.Add(rune);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -88,11 +114,90 @@ public class CraftingManager : MonoBehaviour
             default:
                 break;
         }
+
+        if (!CheckForValidCraft())
+        {
+            createButton.interactable = false;
+        }
+        else
+        {
+            createButton.interactable = true;
+        }
     }
 
     public void OnOpen()
     {
         ProjectileButton();
+    }
+
+    public void Craft()
+    {
+        GameObject newSpell = Instantiate(spellHolder, spellBook.transform);
+
+        switch (resultingCastingType)
+        {
+            case CastingType.Projectile:
+                ProjectileSpell newProjectile = newSpell.AddComponent<ProjectileSpell>();
+                AddRunes(newProjectile);
+                break;
+            case CastingType.AOE:
+                break;
+            case CastingType.Self:
+                break;
+            default:
+                break;
+        }
+
+        foreach (ElementalRuneCount rune in ItemManager.instance.elementalRuneBag)
+        {
+            if (rune.rune.element == resultingElement && rune.rune.rarity == resultingRarity)
+            {
+                rune.count -= Convert.ToInt32(elementCount.text);
+            }
+        }
+        foreach (CastingRuneCount rune in ItemManager.instance.castingRuneBag)
+        {
+            if (rune.rune.castingType == resultingCastingType && rune.rune.rarity == resultingRarity)
+            {
+                rune.count -= Convert.ToInt32(castingCount.text);
+            }
+        }
+
+        if (runeIndex < 3)
+        {
+            currentElementTotals[(int)resultingRarity+1] -= Convert.ToInt32(elementCount.text);
+        }
+        else
+        {
+            currentCastingTotals[(int)resultingRarity+1] -= Convert.ToInt32(castingCount.text);
+        }
+        DisplayCounts();
+        UpdateDisplay();
+
+        elementCount.text = "0";
+        castingCount.text = "0";
+    }
+
+    private void AddRunes(Spell spell)
+    {
+        for (int i = 0; i < Convert.ToInt32(elementCount.text); i++)
+        {
+            //spell.elementalRunes[i] = ;
+        }
+        for (int i = 0; i < Convert.ToInt32(castingCount.text); i++)
+        {
+            spell.castingRunes[i] = (CastingRune)ScriptableObject.CreateInstance($"{resultingRarity}{resultingCastingType}");
+        }
+    }
+
+    private bool CheckForValidCraft()
+    {
+        if (!cross.activeInHierarchy && elementCount.text != "-" && elementCount.text != "0"
+             && castingCount.text != "-" && castingCount.text != "0")
+        {
+            return true;
+        }
+        return false;
     }
 
     private void DisplayCounts()
@@ -158,11 +263,13 @@ public class CraftingManager : MonoBehaviour
         {
             castingRarity.text = rarity.ToString();
             cRarity = rarity;
+            castingCount.text = "0";
         }
         else
         {
             elementRarity.text = rarity.ToString();
             eRarity = rarity;
+            elementCount.text = "0";
         }
 
         if (castingRarity.text == elementRarity.text)
@@ -234,6 +341,7 @@ public class CraftingManager : MonoBehaviour
         DisplayCounts();
         UpdateDisplay();
         castingRarity.text = "-";
+        castingCount.text = "0";
     }
 
     public void AOEButton()
@@ -242,6 +350,7 @@ public class CraftingManager : MonoBehaviour
         DisplayCounts();
         UpdateDisplay();
         castingRarity.text = "-";
+        castingCount.text = "0";
     }
 
     public void SelfButton()
@@ -250,6 +359,7 @@ public class CraftingManager : MonoBehaviour
         DisplayCounts();
         UpdateDisplay();
         castingRarity.text = "-";
+        castingCount.text = "0";
     }
 
     public void FireButton()
@@ -258,6 +368,7 @@ public class CraftingManager : MonoBehaviour
         DisplayCounts();
         UpdateDisplay();
         elementRarity.text = "-";
+        elementCount.text = "0";
     }
 
     public void EarthButton()
@@ -266,6 +377,7 @@ public class CraftingManager : MonoBehaviour
         DisplayCounts();
         UpdateDisplay();
         elementRarity.text = "-";
+        elementCount.text = "0";
     }
 
     public void WaterButton()
@@ -274,6 +386,7 @@ public class CraftingManager : MonoBehaviour
         DisplayCounts();
         UpdateDisplay();
         elementRarity.text = "-";
+        elementCount.text = "0";
     }
 
     public void WindButton()
@@ -282,6 +395,7 @@ public class CraftingManager : MonoBehaviour
         DisplayCounts();
         UpdateDisplay();
         elementRarity.text = "-";
+        elementCount.text = "0";
     }
 
     public void MundaneButton()
