@@ -183,6 +183,8 @@ public class CraftingManager : MonoBehaviour
 
         elementCount.text = "0";
         castingCount.text = "0";
+
+        PlayerController.instance.spells.Add(newSpell.GetComponent<Spell>());
     }
 
     private void AddRunes(Spell spell)

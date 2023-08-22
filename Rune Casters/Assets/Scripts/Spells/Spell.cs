@@ -12,7 +12,7 @@ public abstract class Spell : MonoBehaviour
     public Rarity rarity;
     private void Start()
     {
-        CalculateStats();
+        
     }
 
     public abstract void CalculateStats();

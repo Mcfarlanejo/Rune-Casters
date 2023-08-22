@@ -5,6 +5,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Singleton
+    public static PlayerController instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<PlayerController>();
+            }
+            return _instance;
+        }
+    }
+    static PlayerController _instance;
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+    #endregion
+
     public Joystick movementJoystick;
     public Joystick rotationJoystick;
 
@@ -22,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentSpell.GetComponent<Projectile>().spell = (ProjectileSpell)spells[0];
     }
 
     // Update is called once per frame

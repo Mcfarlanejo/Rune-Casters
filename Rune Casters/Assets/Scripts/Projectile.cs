@@ -92,6 +92,10 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<CharacterStats>().TakeDamage(damage);
         }
+        if (collision.gameObject.tag == "PlayerProjectile")
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collision2D>().collider);
+        }
         Destroy(gameObject);
     }
 }

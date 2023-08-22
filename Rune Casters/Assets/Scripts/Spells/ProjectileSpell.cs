@@ -54,6 +54,6 @@ public class ProjectileSpell : Spell
             stat = Random.Range(statMin, statMax + 1);
         }
 
-        stat *= (int)element + 1;
+        stat *= (int)element;
     }
 }
