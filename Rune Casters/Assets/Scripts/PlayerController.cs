@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,22 +33,35 @@ public class PlayerController : MonoBehaviour
     private float verticalMovement = 0;
 
     public Transform firePoint;
-    public GameObject currentSpell;
+    public GameObject projectilePrefab;
     private bool canAttack = true;
 
     private Rigidbody2D rb;
 
     public List<Spell> spells = new List<Spell>();
 
+    public ProjectileSpell activeProjectile;
+    //These 2 are hotswappable at any time
+    public ProjectileSpell projectileOne;
+    public Button projectileOneButton;
+    public ProjectileSpell projectileTwo;
+    public Button projectileTwoButton;
+
+    public AOESpell activeAOE;
+    public SelfSpell activeSelfSpell;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentSpell.GetComponent<Projectile>().spell = (ProjectileSpell)spells[0];
+        projectileOne = (ProjectileSpell)spells[0];
+        activeProjectile = projectileOne;
     }
 
     // Update is called once per frame
     void Update()
     {
+        projectilePrefab.GetComponent<Projectile>().spell = activeProjectile;
+
         horizontalMovement = movementJoystick.Horizontal * 5;
         verticalMovement = movementJoystick.Vertical * 5;
 
@@ -69,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        GameObject newSpell = Instantiate(currentSpell, firePoint.position, firePoint.rotation);
+        GameObject newSpell = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         newSpell.GetComponent<Projectile>().parent = gameObject;
     }
 
@@ -77,5 +91,15 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
         canAttack = true;
+    }
+
+    public void SetProjectileOneActive()
+    {
+        activeProjectile = projectileOne;
+    }
+
+    public void SetProjectileTwoActive()
+    {
+        activeProjectile = projectileTwo;
     }
 }
