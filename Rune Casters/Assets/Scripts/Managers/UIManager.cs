@@ -6,52 +6,59 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    #region Singleton
+    public static UIManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<UIManager>();
+            }
+            return _instance;
+        }
+    }
+    static UIManager _instance;
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+    #endregion
+
     public Button quitButton;
     public Button resumeButton;
 
-    public Button projectileOneButton;
     public Image projectileOneRarityColour;
     public Image projectileOneImage;
 
-    public Button projectileTwoButton;
     public Image projectileTwoRarityColour;
     public Image projectileTwoImage;
 
     public Color[] rarityColours = new Color[5];
+    public Color[] elementColours = new Color[4];
 
     private void Start()
     {
         quitButton.onClick.AddListener(Quit);
         resumeButton.onClick.AddListener(Resume);
+        UpdateButtons();
     }
 
     private void Update()
     {
-        if (PlayerController.instance.projectileTwo == null)
-        {
-            projectileTwoButton.enabled = false;
-        }
-        else
-        {
-            projectileTwoButton.enabled = true;
-            projectileTwoRarityColour.color = rarityColours[(int)PlayerController.instance.projectileTwo.rarity - 1];
-            projectileTwoImage.sprite = PlayerController.instance.projectilePrefab.GetComponent<SpriteRenderer>().sprite;
-        }
+        
+    }
 
-        projectileOneRarityColour.color = rarityColours[(int)PlayerController.instance.projectileOne.rarity - 1];
-        projectileOneImage.sprite = PlayerController.instance.projectilePrefab.GetComponent<SpriteRenderer>().sprite;
+    public void UpdateButtons()
+    {
+        projectileOneRarityColour.color = rarityColours[(int)PlayerController.instance.projectileOne.rarity];
+        projectileOneImage.color = elementColours[(int)PlayerController.instance.projectileOne.element - 1];
 
-
-
-        if (PlayerController.instance.activeProjectile == PlayerController.instance.projectileOne)
+        if (PlayerController.instance.projectileTwo != null)
         {
-            projectileOneButton.GetComponent<Image>().enabled = true;
-            projectileTwoButton.GetComponent<Image>().enabled = false;
-        }
-        else
-        {
-            projectileOneButton.GetComponent<Image>().enabled = false;
-            projectileTwoButton.GetComponent<Image>().enabled = true;
+            projectileTwoRarityColour.color = rarityColours[(int)PlayerController.instance.projectileTwo.rarity];
+            projectileTwoImage.color = elementColours[(int)PlayerController.instance.projectileTwo.element - 1];
         }
     }
 

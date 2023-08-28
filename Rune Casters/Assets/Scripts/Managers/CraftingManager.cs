@@ -185,6 +185,11 @@ public class CraftingManager : MonoBehaviour
         castingCount.text = "0";
 
         PlayerController.instance.spells.Add(newSpell.GetComponent<Spell>());
+        if (PlayerController.instance.projectileTwo == null)
+        {
+            PlayerController.instance.projectileTwo = (ProjectileSpell)newSpell.GetComponent<Spell>();
+        }
+        UIManager.instance.UpdateButtons();
     }
 
     private void AddRunes(Spell spell)

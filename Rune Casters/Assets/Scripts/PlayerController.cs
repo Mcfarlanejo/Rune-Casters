@@ -96,10 +96,14 @@ public class PlayerController : MonoBehaviour
     public void SetProjectileOneActive()
     {
         activeProjectile = projectileOne;
+        projectileOneButton.gameObject.GetComponent<Image>().enabled = true;
+        projectileTwoButton.gameObject.GetComponent<Image>().enabled = false;
     }
 
     public void SetProjectileTwoActive()
     {
         activeProjectile = projectileTwo;
+        projectileOneButton.gameObject.GetComponent<Image>().enabled = false;
+        projectileTwoButton.gameObject.GetComponent<Image>().enabled = true;
     }
 }
