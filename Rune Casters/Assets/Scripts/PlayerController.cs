@@ -48,7 +48,9 @@ public class PlayerController : MonoBehaviour
     public Button projectileTwoButton;
 
     public AOESpell activeAOE;
+    public Button aoeButton;
     public SelfSpell activeSelfSpell;
+    public Button selfButton;
 
     private void Start()
     {
@@ -105,5 +107,15 @@ public class PlayerController : MonoBehaviour
         activeProjectile = projectileTwo;
         projectileOneButton.gameObject.GetComponent<Image>().enabled = false;
         projectileTwoButton.gameObject.GetComponent<Image>().enabled = true;
+    }
+
+    public void CastAOE()
+    {
+
+    }
+
+    public void CastSelf()
+    {
+
     }
 }
