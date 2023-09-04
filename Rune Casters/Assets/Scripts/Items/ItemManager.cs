@@ -74,6 +74,7 @@ public class ItemManager : MonoBehaviour
             if (item.equipmentType == slot.type)
             {
                 slot.item = item;
+                slot.UpdateItem();
             }
         }
         inventory.Remove(item);

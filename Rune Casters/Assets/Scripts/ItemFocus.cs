@@ -49,6 +49,7 @@ public class ItemFocus : MonoBehaviour
 
     private void Equip()
     {
+
         ItemManager.instance.EquipItem(item);
     }
 

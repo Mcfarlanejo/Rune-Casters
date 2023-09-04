@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ public class InventoryButton : MonoBehaviour
     public void LoadInventory()
     {
         ItemSlot[] slots = inventorySlots.GetComponentsInChildren<ItemSlot>();
-        for (int i = 0; i < ItemManager.instance.inventory.Count; i++)
+        for (int i = 0; i < slots.Count(); i++)
         {
             slots[i].item = ItemManager.instance.inventory[i];
             slots[i].UpdateItem();

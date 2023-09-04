@@ -46,7 +46,7 @@ public class ItemSlot : MonoBehaviour
         }
         else
         {
-            image = null;
+            image.sprite = null;
         }
         
     }
