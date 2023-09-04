@@ -39,6 +39,7 @@ public class ItemManager : MonoBehaviour
     #endregion
 
     public List<ItemObject> equipment =  new List<ItemObject>();
+    public List<EquipmentSlot> equipmentSlots = new List<EquipmentSlot>();
     public List<ItemObject> inventory = new List<ItemObject>();
     public List<ElementalRuneCount> elementalRuneBag = new List<ElementalRuneCount>();
     public List<CastingRuneCount> castingRuneBag = new List<CastingRuneCount>();
@@ -68,6 +69,13 @@ public class ItemManager : MonoBehaviour
         }
 
         equipment.Add(item);
+        foreach (EquipmentSlot slot in equipmentSlots)
+        {
+            if (item.equipmentType == slot.type)
+            {
+                slot.item = item;
+            }
+        }
         inventory.Remove(item);
         
         PlayerStats.instance.EquipmentChanged(item, oldItem);

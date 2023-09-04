@@ -32,12 +32,23 @@ public class ItemSlot : MonoBehaviour
         {
             image.color = Color.white;
         }
+        else
+        {
+            image.color = new Color(0, 0, 0, 0);
+        }
     }
 
-    // Update is called once per frame
     public void UpdateItem()
     {
-        image.sprite = item.baseItem.image;
+        if (item != null)
+        {
+            image.sprite = item.baseItem.image;
+        }
+        else
+        {
+            image = null;
+        }
+        
     }
     
     private void ShowItemFocus()

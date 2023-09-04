@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -37,16 +38,31 @@ public class ItemFocus : MonoBehaviour
     public TMP_Text secondaryStatText;
     public TMP_Text secondaryStatValue;
     public TMP_Text sellPrice;
+    public Button equipButton;
+    public InventoryButton iButton;
     // Start is called before the first frame update
     void Start()
     {
-        
+        equipButton.onClick.AddListener(Equip);
+        equipButton.onClick.AddListener(iButton.LoadInventory);
+    }
+
+    private void Equip()
+    {
+        ItemManager.instance.EquipItem(item);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (item == null)
+        {
+            equipButton.interactable = false;
+        }
+        else
+        {
+            equipButton.interactable = true;
+        }
     }
 
     public void ChangeItem(ItemObject newItem)
