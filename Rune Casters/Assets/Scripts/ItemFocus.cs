@@ -29,6 +29,7 @@ public class ItemFocus : MonoBehaviour
     #endregion
 
     public ItemObject item;
+    public ItemSlot slot;
 
     public Image image;
     public TMP_Text itemName;
@@ -49,7 +50,7 @@ public class ItemFocus : MonoBehaviour
 
     private void Equip()
     {
-
+        slot.item = null;
         ItemManager.instance.EquipItem(item);
     }
 
@@ -66,9 +67,10 @@ public class ItemFocus : MonoBehaviour
         }
     }
 
-    public void ChangeItem(ItemObject newItem)
+    public void ChangeItem(ItemObject newItem, ItemSlot newSlot)
     {
         item = newItem;
+        slot = newSlot;
 
         image.sprite = item.baseItem.image;
         itemName.text = item.baseItem.name;
@@ -78,7 +80,7 @@ public class ItemFocus : MonoBehaviour
         switch (item.equipmentType)
         {
             case EquipmentType.Weapon:
-                primaryStatText.text = "Attack:";
+                primaryStatText.text = "Damage:";
                 primaryStatValue.text = item.damage.ToString();
 
                 secondaryStatText.text = "Cast Speed:";

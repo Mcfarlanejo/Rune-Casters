@@ -35,7 +35,7 @@ public class EquipmentSlot : MonoBehaviour
         if (item != null)
         {
             //ItemFocus.instance.gameObject.SetActive(true);
-            itemFocus.ChangeItem(item);
+            itemFocus.ChangeItem(item, null);
         }
     }
 }

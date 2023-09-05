@@ -22,6 +22,12 @@ public class InventoryButton : MonoBehaviour
     public void LoadInventory()
     {
         ItemSlot[] slots = inventorySlots.GetComponentsInChildren<ItemSlot>();
+        foreach (ItemSlot slot in slots)
+        {
+            slot.item = null;
+            slot.UpdateItem();
+        }
+
         for (int i = 0; i < slots.Count(); i++)
         {
             slots[i].item = ItemManager.instance.inventory[i];

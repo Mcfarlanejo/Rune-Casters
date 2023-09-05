@@ -56,7 +56,7 @@ public class ItemSlot : MonoBehaviour
         if (item != null)
         {
             //ItemFocus.instance.gameObject.SetActive(true);
-            itemFocus.ChangeItem(item);
+            itemFocus.ChangeItem(item, this);
         }
     }
 }

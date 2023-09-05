@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b117044b9ee7248865ca68917b91b2, type: 3}
-  m_Name: Advanced Robes
+  m_Name: Staff of Flames
   m_EditorClassIdentifier: 
-  image: {fileID: -223316672, guid: 2098b5279aa71a84e910125deabff966, type: 3}
+  image: {fileID: 322784394, guid: 2098b5279aa71a84e910125deabff966, type: 3}
   element: 0
   rarity: 2
-  buyCost: 1000
-  sellCost: 250
-  equipmentType: 2
-  defenceMin: 20
-  defenceMax: 35
-  defencePercentageMin: 15
-  defencePercentageMax: 20
-  damageMin: 0
-  damageMax: 0
+  buyCost: 5000
+  sellCost: 2500
+  equipmentType: 0
+  defenceMin: 0
+  defenceMax: 0
+  defencePercentageMin: 0
+  defencePercentageMax: 0
+  damageMin: 50
+  damageMax: 100
   damagePercentageMin: 0
   damagePercentageMax: 0
-  castSpeedMin: 0
-  castSpeedMax: 0
+  castSpeedMin: 10
+  castSpeedMax: 15
   castSpeedPercentageMin: 0
   castSpeedPercentageMax: 0
   walkSpeedPercentageMin: 0
