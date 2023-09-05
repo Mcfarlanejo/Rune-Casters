@@ -62,8 +62,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        projectilePrefab.GetComponent<Projectile>().spell = activeProjectile;
-
         horizontalMovement = movementJoystick.Horizontal * 5;
         verticalMovement = movementJoystick.Vertical * 5;
 
@@ -86,12 +84,14 @@ public class PlayerController : MonoBehaviour
     private void Fire()
     {
         GameObject newSpell = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        newSpell.GetComponent<Projectile>().spell = activeProjectile;
         newSpell.GetComponent<Projectile>().parent = gameObject;
     }
 
     private IEnumerator FireDelay()
     {
-        yield return new WaitForSeconds(.5f);
+        //Debug.Log((float)(100 - (activeProjectile.castDelay + PlayerStats.instance.castSpeed.GetValue()) * 1 + PlayerStats.instance.castSpeedPercentage.GetValue()) / 100);
+        yield return new WaitForSeconds((float)(100 - (activeProjectile.castDelay + PlayerStats.instance.castSpeed.GetValue()) * 1 + PlayerStats.instance.castSpeedPercentage.GetValue())/100);
         canAttack = true;
     }
 
