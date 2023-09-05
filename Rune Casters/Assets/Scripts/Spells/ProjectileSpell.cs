@@ -32,28 +32,4 @@ public class ProjectileSpell : Spell
         CalculateStat(elementalRunes, ref speed, speedMin, speedMax);
         CalculateStat(castingRunes, ref castDelay, castDelayMin, castDelayMax);
     }
-
-    private void CalculateStat(Rune[] runeArray, ref int stat, int statMin, int statMax)
-    {
-        float chance = 0;
-        foreach (var rune in runeArray)
-        {
-            if (rune != null)
-            {
-                chance += 0.1f;
-            }
-        }
-        float temp =  Random.Range(0, 1.01f);
-
-        if (chance >= temp)
-        {
-            stat = statMax;
-        }
-        else
-        {
-            stat = Random.Range(statMin, statMax + 1);
-        }
-
-        stat *= (int)element;
-    }
 }
