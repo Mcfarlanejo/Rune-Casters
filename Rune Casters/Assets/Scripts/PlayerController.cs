@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform firePoint;
     public GameObject projectilePrefab;
+    public GameObject aoePrefab;
     private bool canAttack = true;
 
     private Rigidbody2D rb;
@@ -111,7 +112,8 @@ public class PlayerController : MonoBehaviour
 
     public void CastAOE()
     {
-
+        GameObject newSpell = Instantiate(aoePrefab, gameObject.transform.position, Quaternion.identity);
+        newSpell.GetComponent<AOE>().spell = activeAOE;
     }
 
     public void CastSelf()
