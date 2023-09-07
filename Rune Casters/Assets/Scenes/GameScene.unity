@@ -11467,6 +11467,7 @@ MonoBehaviour:
   rotationJoystick: {fileID: 317225535}
   firePoint: {fileID: 1303153458}
   projectilePrefab: {fileID: 630479719083813506, guid: 2caa40565c817af40b014085f8e3be05, type: 3}
+  aoePrefab: {fileID: 0}
   spells:
   - {fileID: 1641110874}
   activeProjectile: {fileID: 0}
@@ -16441,6 +16442,7 @@ GameObject:
   - component: {fileID: 1461266093}
   - component: {fileID: 1461266092}
   - component: {fileID: 1461266091}
+  - component: {fileID: 1461266096}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -16591,6 +16593,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1461266096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461266090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc72dcf6c0bc4344baa54a7bdec94c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 916836933}
+  speed: 1
+  viewDistance: 4
+  distance: 0
+  chase: 0
 --- !u!1 &1468426270
 GameObject:
   m_ObjectHideFlags: 0
