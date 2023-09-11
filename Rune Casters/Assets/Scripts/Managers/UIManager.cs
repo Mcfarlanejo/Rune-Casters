@@ -87,6 +87,27 @@ public class UIManager : MonoBehaviour
             temp = new Color(old.r, old.g, old.b, 1f);
             AOEImage.color = temp;
         }
+
+        if (PlayerController.instance.selfButton.interactable == false)
+        {
+            Color old = selfRarityColour.color;
+            Color temp = new Color(old.r, old.g, old.b, .42f);
+            selfRarityColour.color = temp;
+
+            old = selfImage.color;
+            temp = new Color(old.r, old.g, old.b, .42f);
+            selfImage.color = temp;
+        }
+        else
+        {
+            Color old = selfRarityColour.color;
+            Color temp = new Color(old.r, old.g, old.b, 1f);
+            selfRarityColour.color = temp;
+
+            old = selfImage.color;
+            temp = new Color(old.r, old.g, old.b, 1f);
+            selfImage.color = temp;
+        }
     }
     public void LoadSpellbook()
     {
