@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        gameObject.layer = 6;
         //colour = GetComponent<SpriteRenderer>().color;
     }
 

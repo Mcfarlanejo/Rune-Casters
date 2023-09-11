@@ -11387,7 +11387,7 @@ GameObject:
   - component: {fileID: 916836934}
   - component: {fileID: 916836938}
   - component: {fileID: 916836939}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -15158,7 +15158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1303153458}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16559,7 +16559,7 @@ GameObject:
   - component: {fileID: 1461266092}
   - component: {fileID: 1461266091}
   - component: {fileID: 1461266096}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
