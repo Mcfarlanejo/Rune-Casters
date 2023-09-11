@@ -114,6 +114,12 @@ public class PlayerController : MonoBehaviour
     {
         GameObject newSpell = Instantiate(aoePrefab, gameObject.transform.position, Quaternion.identity);
         newSpell.GetComponent<AOE>().spell = activeAOE;
+        newSpell.GetComponent<AOE>().parent = gameObject;
+    }
+
+    public IEnumerator AOEDelay()
+    {
+        yield return new WaitForSeconds(activeAOE.castDelay);
     }
 
     public void CastSelf()

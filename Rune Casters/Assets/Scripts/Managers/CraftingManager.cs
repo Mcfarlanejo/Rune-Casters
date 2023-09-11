@@ -185,10 +185,19 @@ public class CraftingManager : MonoBehaviour
         castingCount.text = "0";
 
         PlayerController.instance.spells.Add(newSpell.GetComponent<Spell>());
-        if (PlayerController.instance.projectileTwo == null)
+        if (PlayerController.instance.projectileTwo == null && resultingCastingType == CastingType.Projectile)
         {
             PlayerController.instance.projectileTwo = (ProjectileSpell)newSpell.GetComponent<Spell>();
         }
+        else if (PlayerController.instance.activeAOE == null && resultingCastingType == CastingType.AOE)
+        {
+            PlayerController.instance.activeAOE = (AOESpell)newSpell.GetComponent<Spell>();
+        }
+        else if (PlayerController.instance.activeSelfSpell == null && resultingCastingType == CastingType.Self)
+        {
+            PlayerController.instance.activeSelfSpell = (SelfSpell)newSpell.GetComponent<Spell>();
+        }
+
         UIManager.instance.UpdateButtons();
     }
 

@@ -38,6 +38,12 @@ public class UIManager : MonoBehaviour
     public Image projectileTwoRarityColour;
     public Image projectileTwoImage;
 
+    public Image AOERarityColour;
+    public Image AOEImage;
+
+    public Image selfRarityColour;
+    public Image selfImage;
+
     public Color[] rarityColours = new Color[5];
     public Color[] elementColours = new Color[4];
 
@@ -103,6 +109,18 @@ public class UIManager : MonoBehaviour
         {
             projectileTwoRarityColour.color = rarityColours[(int)PlayerController.instance.projectileTwo.rarity];
             projectileTwoImage.color = elementColours[(int)PlayerController.instance.projectileTwo.element - 1];
+        }
+
+        if (PlayerController.instance.activeAOE != null)
+        {
+            AOERarityColour.color = rarityColours[(int)PlayerController.instance.activeAOE.rarity];
+            AOEImage.color = elementColours[(int)PlayerController.instance.activeAOE.element - 1];
+        }
+
+        if (PlayerController.instance.activeSelfSpell != null)
+        {
+            selfRarityColour.color = rarityColours[(int)PlayerController.instance.activeSelfSpell.rarity];
+            selfImage.color = elementColours[(int)PlayerController.instance.activeSelfSpell.element - 1];
         }
     }
 

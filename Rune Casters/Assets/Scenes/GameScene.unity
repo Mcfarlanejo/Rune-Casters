@@ -1883,6 +1883,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134506901}
   m_CullTransparentMesh: 1
+--- !u!1 &157715580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 150482497794662171, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+  m_PrefabInstance: {fileID: 1422426127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &157715581 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+  m_PrefabInstance: {fileID: 1422426127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &157715582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157715580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89be9f4106405604e9fca6263c6d5671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementalRunes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  castingRunes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  element: 1
+  rarity: 0
+  damage: 10
+  damageMin: 1
+  damageMax: 10
+  range: 5
+  rangeMin: 5
+  rangeMax: 10
+  speed: 1
+  speedMin: 1
+  speedMax: 10
+  castDelay: 10
+  castDelayMin: 1
+  castDelayMax: 10
 --- !u!1 &160031778
 GameObject:
   m_ObjectHideFlags: 0
@@ -11467,18 +11525,19 @@ MonoBehaviour:
   rotationJoystick: {fileID: 317225535}
   firePoint: {fileID: 1303153458}
   projectilePrefab: {fileID: 630479719083813506, guid: 2caa40565c817af40b014085f8e3be05, type: 3}
-  aoePrefab: {fileID: 0}
+  aoePrefab: {fileID: 777978840176433238, guid: 74a864def43ab0b43a1a5b5d0cdc92e5, type: 3}
   spells:
   - {fileID: 1641110874}
+  - {fileID: 157715582}
   activeProjectile: {fileID: 0}
   projectileOne: {fileID: 0}
   projectileOneButton: {fileID: 791530899}
   projectileTwo: {fileID: 0}
   projectileTwoButton: {fileID: 1869765349}
-  activeAOE: {fileID: 0}
-  aoeButton: {fileID: 0}
+  activeAOE: {fileID: 157715582}
+  aoeButton: {fileID: 1935108321}
   activeSelfSpell: {fileID: 0}
-  selfButton: {fileID: 0}
+  selfButton: {fileID: 692441680}
 --- !u!114 &916836939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16116,6 +16175,63 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1001 &1422426127
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1667191253}
+    m_Modifications:
+    - target: {fileID: 150482497794662171, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_Name
+      value: SpellHolder (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.52233773
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.708795
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.841125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530080645117279816, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6f9e1fd8fc8d514fbd7e3d22b79beb4, type: 3}
 --- !u!1 &1423553788
 GameObject:
   m_ObjectHideFlags: 0
@@ -19621,6 +19737,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1641110873}
+  - {fileID: 157715581}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22514,6 +22631,10 @@ MonoBehaviour:
   projectileOneImage: {fileID: 1493088455}
   projectileTwoRarityColour: {fileID: 375333857}
   projectileTwoImage: {fileID: 177869148}
+  AOERarityColour: {fileID: 160031780}
+  AOEImage: {fileID: 1318490302}
+  selfRarityColour: {fileID: 640389623}
+  selfImage: {fileID: 1488190843}
   rarityColours:
   - {r: 0.73333335, g: 0.61960787, b: 0.48235297, a: 1}
   - {r: 0.16078432, g: 0.6156863, b: 0.003921569, a: 1}
