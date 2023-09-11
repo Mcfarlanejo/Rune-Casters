@@ -65,6 +65,29 @@ public class UIManager : MonoBehaviour
         UpdateButtons();
     }
 
+    private void Update()
+    {
+        if (PlayerController.instance.aoeButton.interactable == false)
+        {
+            Color old = AOERarityColour.color;
+            Color temp = new Color(old.r, old.g, old.b, .42f);
+            AOERarityColour.color = temp;
+
+            old = AOEImage.color;
+            temp = new Color(old.r, old.g, old.b, .42f);
+            AOEImage.color = temp;
+        }
+        else
+        {
+            Color old = AOERarityColour.color;
+            Color temp = new Color(old.r, old.g, old.b, 1f);
+            AOERarityColour.color = temp;
+
+            old = AOEImage.color;
+            temp = new Color(old.r, old.g, old.b, 1f);
+            AOEImage.color = temp;
+        }
+    }
     public void LoadSpellbook()
     {
         foreach(Transform child in projectileContainer.transform) { Destroy(child.gameObject); }
