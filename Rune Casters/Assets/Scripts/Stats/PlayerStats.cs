@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class PlayerStats : CharacterStats
@@ -45,6 +47,30 @@ public class PlayerStats : CharacterStats
             castSpeedPercentage.AddModifier(newItem.castSpeedPercentage);
             walkSpeedPercentage.AddModifier(newItem.walkSpeedPercentage);
         }
+    }
+
+    public void AddTempStats(SelfSpell spell)
+    {
+        damage.AddModifier(spell.damage);
+        defence.AddModifier(spell.defence);
+        walkSpeedPercentage.AddModifier(spell.speed);
+        castSpeed.AddModifier(spell.castSpeed);
+
+        StartCoroutine(TempStatsDelay(spell));
+    }
+
+    public IEnumerator TempStatsDelay(SelfSpell spell)
+    {
+        yield return new WaitForSeconds(spell.castDelay/2);
+        RemoveTempStats(spell);
+    }
+
+    public void RemoveTempStats(SelfSpell spell)
+    {
+        damage.RemoveModifier(spell.damage);
+        defence.RemoveModifier(spell.defence);
+        walkSpeedPercentage.RemoveModifier(spell.speed);
+        castSpeed.RemoveModifier(spell.castSpeed);
     }
 
     public override void Die()

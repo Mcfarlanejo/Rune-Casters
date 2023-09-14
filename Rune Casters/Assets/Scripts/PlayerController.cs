@@ -80,6 +80,8 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(FireDelay());
             }
         }
+
+        Debug.Log(PlayerStats.instance.damage.GetValue());
     }
 
     private void Fire()
@@ -127,6 +129,14 @@ public class PlayerController : MonoBehaviour
 
     public void CastSelf()
     {
+        PlayerStats.instance.AddTempStats(activeSelfSpell);
+        StartCoroutine(SelfDelay(activeSelfSpell.castDelay));
+    }
 
+    public IEnumerator SelfDelay(float delay)
+    {
+        selfButton.interactable = false;
+        yield return new WaitForSeconds(delay);
+        selfButton.interactable = true;
     }
 }

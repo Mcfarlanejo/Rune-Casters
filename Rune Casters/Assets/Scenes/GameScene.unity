@@ -7912,7 +7912,7 @@ MonoBehaviour:
   - rune: {fileID: 11400000, guid: d4cf397e6192b204192b0b5f5f183ed8, type: 2}
     count: 0
   - rune: {fileID: 11400000, guid: 1184f30eb2d04484ba19ba521c41ccb7, type: 2}
-    count: 0
+    count: 10
   - rune: {fileID: 11400000, guid: 931cfa94b58e3324f81783529c6c5a91, type: 2}
     count: 10
   - rune: {fileID: 11400000, guid: 392b010b52db37242a3d9bd3e6046797, type: 2}
