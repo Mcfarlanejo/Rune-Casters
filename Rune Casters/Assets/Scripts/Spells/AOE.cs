@@ -20,6 +20,11 @@ public class AOE : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         //colour = GetComponent<SpriteRenderer>().color;
     }
+
+    private void Start()
+    {
+        SetValues();
+    }
     private void SetColour()
     {
         switch (element)
@@ -61,7 +66,7 @@ public class AOE : MonoBehaviour
         }
 
         speed = new Vector3(spell.speed, spell.speed, 0);
-        range = spell.range;
+        range = spell.range/2;
 
         startScale = transform.localScale;
 

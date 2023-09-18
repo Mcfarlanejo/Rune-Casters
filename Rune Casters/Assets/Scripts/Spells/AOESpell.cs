@@ -9,12 +9,12 @@ public class AOESpell : Spell
     public int damageMax = 10;
 
     public int range = 0;
-    public int rangeMin = 5;
-    public int rangeMax = 10;
+    public int rangeMin = 1;
+    public int rangeMax = 3;
 
     public int speed = 0;
     public int speedMin = 1;
-    public int speedMax = 10;
+    public int speedMax = 3;
 
     public int castDelay = 0;
     public int castDelayMin = 1;

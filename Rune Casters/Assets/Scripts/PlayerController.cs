@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
     public IEnumerator AOEDelay(float delay)
     {
         aoeButton.interactable = false;
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(60 - delay);
         aoeButton.interactable = true;
     }
 
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
     public IEnumerator SelfDelay(float delay)
     {
         selfButton.interactable = false;
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(60 - delay);
         selfButton.interactable = true;
     }
 }
