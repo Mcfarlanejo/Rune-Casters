@@ -55,6 +55,9 @@ public class UIManager : MonoBehaviour
     public Image spellbookFocusImage;
     public TMP_Text spellbookFocusName;
     public Image spellbookFocusBG;
+    public Button equipSpellButton;
+    public Button equipProjectile2Button;
+    public Spell focusedSpell;
 
     public TMP_Text text1;
     public TMP_Text text2;
@@ -119,6 +122,7 @@ public class UIManager : MonoBehaviour
             selfImage.color = temp;
         }
     }
+
     public void LoadSpellbook()
     {
         foreach(Transform child in projectileContainer.transform) { Destroy(child.gameObject); }
@@ -177,6 +181,277 @@ public class UIManager : MonoBehaviour
             selfRarityColour.color = rarityColours[(int)PlayerController.instance.activeSelfSpell.rarity];
             selfImage.color = elementColours[(int)PlayerController.instance.activeSelfSpell.element - 1];
         }
+    }
+
+    public void UpdateFocus(Spell spell)
+    {
+        spellbookFocusImage.sprite = spell.elementalRunes[0].image;
+        spellbookFocusBG.color = rarityColours[(int)spell.rarity];
+        spellbookFocusName.text = $"{spell.rarity} {spell.element} {spell.castingRunes[0].castingType}";
+
+        if (spell.castingRunes[0].castingType == CastingType.Self)
+        {
+            SelfSpell s = (SelfSpell)spell;
+            if (s.damage != 0)
+            {
+                text1.text = "Damage:";
+                value1.text = s.damage.ToString();
+                if (s.damage < PlayerController.instance.activeSelfSpell.damage)
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.damage > PlayerController.instance.activeSelfSpell.damage)
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+            }
+            else if (s.defence != 0)
+            {
+                text1.text = "Defense:";
+                value1.text = s.defence.ToString();
+                if (s.defence < PlayerController.instance.activeSelfSpell.defence)
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.defence > PlayerController.instance.activeSelfSpell.defence)
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+            }
+            else if (s.speed != 0)
+            {
+                text1.text = "Speed:";
+                value1.text = s.speed.ToString();
+                if (s.speed < PlayerController.instance.activeSelfSpell.speed)
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.speed > PlayerController.instance.activeSelfSpell.speed)
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+            }
+            else
+            {
+                text1.text = "Cast Speed:";
+                value1.text = s.castSpeed.ToString();
+                if (s.castSpeed < PlayerController.instance.activeSelfSpell.castSpeed)
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.castSpeed > PlayerController.instance.activeSelfSpell.castSpeed)
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+            }
+
+            text2.text = "";
+            value2.text = "";
+            text3.text = "";
+            value3.text = "";
+
+            value4.text = s.castDelay.ToString();
+            if (s.castDelay < PlayerController.instance.activeSelfSpell.castDelay)
+            {
+                text1.color = Color.red;
+            }
+            else if (s.castDelay > PlayerController.instance.activeSelfSpell.castDelay)
+            {
+                text1.color = Color.green;
+            }
+            else
+            {
+                text1.color = Color.white;
+            }
+        }
+        else
+        {
+            text1.text = "Damage:";
+            text2.text = "Range:";
+            text3.text = "Speed:";
+
+            if (spell.castingRunes[0].castingType == CastingType.Projectile)
+            {
+                ProjectileSpell s = (ProjectileSpell)spell;
+
+                int projectileTwoDamage = PlayerController.instance.projectileTwo != null ? PlayerController.instance.projectileTwo.damage : 0;
+                int projectileTwoRange = PlayerController.instance.projectileTwo != null ? PlayerController.instance.projectileTwo.range : 0;
+                int projectileTwoSpeed = PlayerController.instance.projectileTwo != null ? PlayerController.instance.projectileTwo.speed : 0;
+                int projectileTwoCastDelay = PlayerController.instance.projectileTwo != null ? PlayerController.instance.projectileTwo.castDelay : 0;
+
+                value1.text = s.damage.ToString();
+                if (s.damage < Mathf.Min(PlayerController.instance.projectileOne.damage, projectileTwoDamage))
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.damage > Mathf.Min(PlayerController.instance.projectileOne.damage, projectileTwoDamage))
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+
+                value2.text = s.range.ToString();
+                if (s.range < Mathf.Min(PlayerController.instance.projectileOne.range, projectileTwoRange))
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.range > Mathf.Min(PlayerController.instance.projectileOne.range, projectileTwoRange))
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+
+                value3.text = s.speed.ToString();
+                if (s.speed < Mathf.Min(PlayerController.instance.projectileOne.speed, projectileTwoSpeed))
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.speed > Mathf.Min(PlayerController.instance.projectileOne.speed, projectileTwoSpeed))
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+
+                value4.text = s.castDelay.ToString();
+                if (s.castDelay < Mathf.Min(PlayerController.instance.projectileOne.castDelay, projectileTwoCastDelay))
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.castDelay > Mathf.Min(PlayerController.instance.projectileOne.castDelay, projectileTwoCastDelay))
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+            }
+            else
+            {
+                AOESpell s = (AOESpell)spell;
+                value1.text = s.damage.ToString();
+                if (s.damage < PlayerController.instance.activeAOE.damage)
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.damage > PlayerController.instance.activeAOE.damage)
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+
+                value2.text = s.range.ToString();
+                if (s.range < PlayerController.instance.activeAOE.range)
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.range > PlayerController.instance.activeAOE.range)
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+
+                value3.text = s.speed.ToString();
+                if (s.speed < PlayerController.instance.activeAOE.speed)
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.speed > PlayerController.instance.activeAOE.speed)
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+
+                value4.text = s.castDelay.ToString();
+                if (s.castDelay < PlayerController.instance.activeAOE.castDelay)
+                {
+                    text1.color = Color.red;
+                }
+                else if (s.castDelay > PlayerController.instance.activeAOE.castDelay)
+                {
+                    text1.color = Color.green;
+                }
+                else
+                {
+                    text1.color = Color.white;
+                }
+            }
+        }
+
+        text4.text = "Cast Delay:";
+
+        focusedSpell = spell;
+        UpdateFocusButtons();
+    }
+
+    internal void UpdateFocusButtons()
+    {
+        if (focusedSpell.castingRunes[0].castingType == CastingType.Projectile)
+        {
+            equipProjectile2Button.gameObject.SetActive(true);
+        }
+        else
+        {
+            equipProjectile2Button.gameObject.SetActive(false);
+        }
+    }
+
+    public void SetFocusedSpell()
+    {
+        switch (focusedSpell.castingRunes[0].castingType)
+        {
+            case CastingType.Projectile:
+                PlayerController.instance.projectileOne = (ProjectileSpell)focusedSpell;
+                break;
+            case CastingType.AOE:
+                PlayerController.instance.activeAOE = (AOESpell)focusedSpell;
+                break;
+            case CastingType.Self:
+                PlayerController.instance.activeSelfSpell = (SelfSpell)focusedSpell;
+                break;
+        }
+
+        UpdateButtons();
+    }
+
+    public void SetProjectile2()
+    {
+        PlayerController.instance.projectileTwo = (ProjectileSpell)focusedSpell;
+        UpdateButtons();
     }
 
     private void Resume()
