@@ -55,6 +55,16 @@ public class UIManager : MonoBehaviour
     public Image spellbookFocusImage;
     public TMP_Text spellbookFocusName;
     public Image spellbookFocusBG;
+
+    public TMP_Text text1;
+    public TMP_Text text2;
+    public TMP_Text text3;
+    public TMP_Text text4;
+
+    public TMP_Text value1;
+    public TMP_Text value2;
+    public TMP_Text value3;
+    public TMP_Text value4;
     
 
     private void Start()
@@ -117,6 +127,7 @@ public class UIManager : MonoBehaviour
 
         foreach (Spell spell in PlayerController.instance.spells)
         {
+            Debug.Log(spell.name);
             switch (spell.castingRunes[0].castingType)
             {
                 case CastingType.Projectile:

@@ -80,8 +80,6 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(FireDelay());
             }
         }
-
-        Debug.Log(PlayerStats.instance.damage.GetValue());
     }
 
     private void Fire()

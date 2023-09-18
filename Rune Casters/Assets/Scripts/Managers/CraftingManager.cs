@@ -172,11 +172,11 @@ public class CraftingManager : MonoBehaviour
 
         if (runeIndex < 3)
         {
-            currentElementTotals[(int)resultingRarity+1] -= Convert.ToInt32(elementCount.text);
+            currentElementTotals[(int)resultingRarity] -= Convert.ToInt32(elementCount.text);
         }
         else
         {
-            currentCastingTotals[(int)resultingRarity+1] -= Convert.ToInt32(castingCount.text);
+            currentCastingTotals[(int)resultingRarity] -= Convert.ToInt32(castingCount.text);
         }
         DisplayCounts();
         UpdateDisplay();
