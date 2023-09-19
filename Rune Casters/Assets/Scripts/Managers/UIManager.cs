@@ -189,6 +189,8 @@ public class UIManager : MonoBehaviour
         spellbookFocusBG.color = rarityColours[(int)spell.rarity];
         spellbookFocusName.text = $"{spell.rarity} {spell.element} {spell.castingRunes[0].castingType}";
 
+        focusedSpell = spell;
+
         if (spell.castingRunes[0].castingType == CastingType.Self)
         {
             SelfSpell s = (SelfSpell)spell;
@@ -196,6 +198,7 @@ public class UIManager : MonoBehaviour
             {
                 text1.text = "Damage:";
                 value1.text = s.damage.ToString();
+                Debug.Log(s.damage + " VS " + PlayerController.instance.activeSelfSpell.damage);
                 if (s.damage < PlayerController.instance.activeSelfSpell.damage)
                 {
                     text1.color = Color.red;
@@ -213,6 +216,7 @@ public class UIManager : MonoBehaviour
             {
                 text1.text = "Defense:";
                 value1.text = s.defence.ToString();
+                Debug.Log(s.defence + " VS " + PlayerController.instance.activeSelfSpell.defence);
                 if (s.defence < PlayerController.instance.activeSelfSpell.defence)
                 {
                     text1.color = Color.red;
@@ -230,6 +234,7 @@ public class UIManager : MonoBehaviour
             {
                 text1.text = "Speed:";
                 value1.text = s.speed.ToString();
+                Debug.Log(s.speed + " VS " + PlayerController.instance.activeSelfSpell.speed);
                 if (s.speed < PlayerController.instance.activeSelfSpell.speed)
                 {
                     text1.color = Color.red;
@@ -243,10 +248,11 @@ public class UIManager : MonoBehaviour
                     text1.color = Color.white;
                 }
             }
-            else
+            else if (s.castSpeed != 0)
             {
-                text1.text = "Cast Speed:";
+                text1.text = "Projectile Speed:";
                 value1.text = s.castSpeed.ToString();
+                Debug.Log(s.castSpeed + " VS " + PlayerController.instance.activeSelfSpell.castSpeed);
                 if (s.castSpeed < PlayerController.instance.activeSelfSpell.castSpeed)
                 {
                     text1.color = Color.red;
@@ -412,9 +418,9 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        text4.text = "Cast Delay:";
+        text4.text = "Cast Speed:";
 
-        focusedSpell = spell;
+        
         UpdateFocusButtons();
     }
 
