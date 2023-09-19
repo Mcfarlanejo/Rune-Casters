@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,13 @@ using UnityEngine;
 public class EnemyChase : MonoBehaviour
 {
     public GameObject player;
+    public CharacterStats characterStats;
     public float speed;
 
     public float viewDistance = 5;
     public float distance;
+
+    private bool canDamage = true;
 
     public bool chase = false;
     // Start is called before the first frame update
@@ -41,5 +45,21 @@ public class EnemyChase : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, viewDistance);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && canDamage)
+        {
+            collision.gameObject.GetComponent<PlayerStats>().TakeDamage(characterStats.damage.GetValue());
+            StartCoroutine(DamageDelay());
+        }
+    }
+
+    private IEnumerator DamageDelay()
+    {
+        canDamage = false;
+        yield return new WaitForSeconds(1);
+        canDamage = true;
     }
 }

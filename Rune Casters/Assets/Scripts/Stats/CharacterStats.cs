@@ -47,7 +47,11 @@ public class CharacterStats : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, int.MaxValue);
 
-        ShowDamageNumber(damage);
+        if (gameObject.tag != "Player")
+        {
+            ShowDamageNumber(damage);
+        }
+        
 
         if (currentHealth <= 0)
         {

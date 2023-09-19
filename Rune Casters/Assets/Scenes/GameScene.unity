@@ -5116,6 +5116,7 @@ GameObject:
   - component: {fileID: 389426482}
   - component: {fileID: 389426481}
   - component: {fileID: 389426480}
+  - component: {fileID: 389426483}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5205,6 +5206,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &389426483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389426478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df704239fc121447a5dbdb4e95c99f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 1461266090}
 --- !u!1 &396889326
 GameObject:
   m_ObjectHideFlags: 0
@@ -18848,7 +18862,7 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   damage:
-    baseValue: 0
+    baseValue: 5
   damagePercentage:
     baseValue: 0
   defence:
@@ -18990,6 +19004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 916836933}
+  characterStats: {fileID: 1461266091}
   speed: 1
   viewDistance: 4
   distance: 0
