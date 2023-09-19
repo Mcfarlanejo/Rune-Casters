@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -19,9 +20,12 @@ public class CharacterStats : MonoBehaviour
     public Stat castSpeedPercentage;
     public Stat walkSpeedPercentage;
 
+    public Slider healthBar;
+
     private void Start()
     {
         currentHealth = maxHealth;
+        healthBar.value = 1;
         if (gameObject.tag != "Enemy")
         {
 
@@ -36,7 +40,7 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         damage = damage - defence.GetValue();
         damage = Mathf.Clamp(damage, 1, int.MaxValue);
@@ -49,6 +53,8 @@ public class CharacterStats : MonoBehaviour
         {
             Die();
         }
+
+        healthBar.value = (float)currentHealth / (float)maxHealth;
     }
 
     private void ShowDamageNumber(int damage)

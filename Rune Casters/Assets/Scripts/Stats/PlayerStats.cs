@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
@@ -25,6 +26,8 @@ public class PlayerStats : CharacterStats
         _instance = this;
     }
     #endregion
+
+    public TMP_Text healthText;
     public void EquipmentChanged(ItemObject newItem, ItemObject oldItem)
     {
         if (oldItem != null)
@@ -71,6 +74,13 @@ public class PlayerStats : CharacterStats
         defence.RemoveModifier(spell.defence);
         walkSpeedPercentage.RemoveModifier(spell.speed);
         castSpeed.RemoveModifier(spell.castSpeed);
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+
+        healthText.text = $"{currentHealth}/{maxHealth}";
     }
 
     public override void Die()
