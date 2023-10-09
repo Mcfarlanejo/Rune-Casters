@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private float verticalMovement = 0;
 
     public Transform firePoint;
+    public Transform rotationBeam;
     public GameObject projectilePrefab;
     public GameObject aoePrefab;
     private bool canAttack = true;
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(horizontalMovement, verticalMovement);
 
         float rotationAngle = Mathf.Atan2(rotationJoystick.Horizontal, rotationJoystick.Vertical) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, -rotationAngle);
+        rotationBeam.transform.rotation = Quaternion.Euler(0, 0, -rotationAngle);
 
         if (rotationJoystick.Horizontal != 0 || rotationJoystick.Vertical != 0)
         {
