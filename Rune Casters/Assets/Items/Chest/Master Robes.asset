@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b117044b9ee7248865ca68917b91b2, type: 3}
-  m_Name: Mystic Boots
+  m_Name: Master Robes
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: e57d6fe2f8b51ff489cb485de7c33d29, type: 3}
+  image: {fileID: 21300000, guid: c316e7e9b92301b4f8d78b7a7ea5ced3, type: 3}
   element: 0
-  rarity: 0
+  rarity: 3
   buyCost: 5000
   sellCost: 4000
-  equipmentType: 0
+  equipmentType: 2
   defenceMin: 35
-  defenceMax: 50
-  defencePercentageMin: 0
-  defencePercentageMax: 0
+  defenceMax: 65
+  defencePercentageMin: 20
+  defencePercentageMax: 40
   damageMin: 0
   damageMax: 0
   damagePercentageMin: 0
@@ -30,5 +30,5 @@ MonoBehaviour:
   castSpeedMax: 0
   castSpeedPercentageMin: 0
   castSpeedPercentageMax: 0
-  walkSpeedPercentageMin: 50
-  walkSpeedPercentageMax: 100
+  walkSpeedPercentageMin: 0
+  walkSpeedPercentageMax: 0

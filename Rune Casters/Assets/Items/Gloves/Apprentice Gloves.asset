@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b117044b9ee7248865ca68917b91b2, type: 3}
-  m_Name: Mystic Boots
+  m_Name: Apprentice Gloves
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: e57d6fe2f8b51ff489cb485de7c33d29, type: 3}
+  image: {fileID: 21300000, guid: bed82c624f40d974499f496423f85b20, type: 3}
   element: 0
-  rarity: 0
-  buyCost: 5000
-  sellCost: 4000
-  equipmentType: 0
-  defenceMin: 35
-  defenceMax: 50
+  rarity: 1
+  buyCost: 250
+  sellCost: 100
+  equipmentType: 3
+  defenceMin: 10
+  defenceMax: 20
   defencePercentageMin: 0
   defencePercentageMax: 0
   damageMin: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
   damagePercentageMax: 0
   castSpeedMin: 0
   castSpeedMax: 0
-  castSpeedPercentageMin: 0
-  castSpeedPercentageMax: 0
-  walkSpeedPercentageMin: 50
-  walkSpeedPercentageMax: 100
+  castSpeedPercentageMin: 15
+  castSpeedPercentageMax: 30
+  walkSpeedPercentageMin: 0
+  walkSpeedPercentageMax: 0
