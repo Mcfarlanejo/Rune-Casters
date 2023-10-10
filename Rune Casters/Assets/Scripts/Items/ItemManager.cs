@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [System.Serializable]
@@ -46,6 +48,12 @@ public class ItemManager : MonoBehaviour
 
     public int coins = 0;
 
+    public TMP_Text hpValue;
+    public TMP_Text dmgValue;
+    public TMP_Text defValue;
+    public TMP_Text castValue;
+    public TMP_Text spdValue;
+
     // Start is called before the first frame update
     public void AddItem(ItemObject newItem)
     {
@@ -80,6 +88,16 @@ public class ItemManager : MonoBehaviour
         inventory.Remove(item);
         
         PlayerStats.instance.EquipmentChanged(item, oldItem);
+        UpdateStatText();
+    }
+
+    public void UpdateStatText()
+    {
+        hpValue.text = PlayerStats.instance.maxHealth.ToString();
+        dmgValue.text = Mathf.RoundToInt(PlayerStats.instance.damage.GetValue() * ((float)PlayerStats.instance.damagePercentage.GetValue()/100 + 1)).ToString();
+        defValue.text = Mathf.RoundToInt(PlayerStats.instance.defence.GetValue() * ((float)PlayerStats.instance.defencePercentage.GetValue() / 100 + 1)).ToString();
+        castValue.text = Mathf.RoundToInt(PlayerStats.instance.castSpeed.GetValue() * ((float)PlayerStats.instance.castSpeedPercentage.GetValue() / 100 + 1)).ToString();
+        spdValue.text = (PlayerStats.instance.walkSpeedPercentage.GetValue()).ToString();
     }
 
     public void AddCoins(int value)
