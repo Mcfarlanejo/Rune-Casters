@@ -20,12 +20,12 @@ MonoBehaviour:
   equipmentType: 1
   defenceMin: 20
   defenceMax: 35
-  defencePercentageMin: 18
-  defencePercentageMax: 30
+  defencePercentageMin: 0
+  defencePercentageMax: 0
   damageMin: 0
   damageMax: 0
-  damagePercentageMin: 0
-  damagePercentageMax: 0
+  damagePercentageMin: 18
+  damagePercentageMax: 30
   castSpeedMin: 0
   castSpeedMax: 0
   castSpeedPercentageMin: 0

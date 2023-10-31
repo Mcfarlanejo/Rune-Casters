@@ -73,6 +73,8 @@ public class CharacterStats : MonoBehaviour
     {
         if (gameObject.tag == "Enemy")
         {
+            LootManager.instance.GetItem(Rarity.Rare);
+            
             Destroy(gameObject);
         }
     }
