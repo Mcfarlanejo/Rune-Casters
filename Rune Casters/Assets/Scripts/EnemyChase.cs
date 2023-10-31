@@ -37,7 +37,15 @@ public class EnemyChase : MonoBehaviour
         if (chase)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-            transform.rotation = Quaternion.Euler(0,0, -angle);
+            //transform.rotation = Quaternion.Euler(0,0, -angle);
+            if (player.transform.position.x < transform.position.x)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
     }
 

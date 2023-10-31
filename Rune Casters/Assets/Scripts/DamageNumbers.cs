@@ -12,12 +12,13 @@ public class DamageNumbers : MonoBehaviour
     void Start()
     {
         StartCoroutine(DestroyAfter());
+        p = parent.GetComponent<Transform>(); 
     }
 
     private void Update()
     {
         Transform t = GetComponent<Transform>();
-        Transform p = parent.GetComponent<Transform>(); 
+        
         t.position = p.position + new Vector3(0, yIncrease);
         yIncrease += 0.005f;
     }

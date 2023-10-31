@@ -35,7 +35,7 @@ public class LootManager : MonoBehaviour
     public GameObject itemPrefab;
     public GameObject runeItemPrefab;
 
-    public void GetItem(Rarity r)
+    public void GetItem(Rarity r, Transform parent)
     {
         int index = (int)r;
         Debug.Log(index);
@@ -45,13 +45,13 @@ public class LootManager : MonoBehaviour
         GameObject p;
         if (i is EquipmentBase)
         {
-            p = Instantiate(itemPrefab);
+            p = Instantiate(itemPrefab, parent);
             p.GetComponent<ItemObject>().baseItem = i as EquipmentBase;
         }
         else
         {
-            //p = Instantiate(runeItemPrefab);
-            //p.GetComponent<RuneObject>().rune = i as Rune;
+            p = Instantiate(runeItemPrefab, parent);
+            p.GetComponent<RunePickup>().rune = i as Rune;
         }
     }
 }

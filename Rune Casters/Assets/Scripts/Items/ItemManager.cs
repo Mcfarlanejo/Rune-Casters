@@ -104,4 +104,29 @@ public class ItemManager : MonoBehaviour
     {
         coins += value;
     }
+
+    internal void AddRune(Rune rune)
+    {
+        if (rune.element == Element.Basic)
+        {
+            CastingRune cRune = rune as CastingRune;
+            foreach (CastingRuneCount c in castingRuneBag)
+            {
+                if (cRune.castingType == c.rune.castingType && cRune.rarity == c.rune.rarity)
+                {
+                    c.count++;
+                }
+            }
+        }
+        else
+        {
+            foreach (ElementalRuneCount r in elementalRuneBag)
+            {
+                if (rune.element == r.rune.element && rune.rarity == r.rune.rarity)
+                {
+                    r.count++;
+                }
+            }
+        }
+    }
 }
