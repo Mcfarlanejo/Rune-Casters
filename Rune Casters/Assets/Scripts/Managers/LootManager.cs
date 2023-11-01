@@ -45,15 +45,16 @@ public class LootManager : MonoBehaviour
         GameObject p;
         if (i is EquipmentBase)
         {
-            p = Instantiate(itemPrefab, parent);
+            p = Instantiate(itemPrefab);
             p.GetComponent<ItemObject>().baseItem = i as EquipmentBase;
             p.GetComponent<ItemPickup>().canPickup = true;
         }
         else
         {
-            p = Instantiate(runeItemPrefab, parent);
+            p = Instantiate(runeItemPrefab);
             p.GetComponent<RunePickup>().rune = i as Rune;
             p.GetComponent<RunePickup>().canPickup = true;
         }
+        p.GetComponent<Transform>().position = parent.transform.position;
     }
 }

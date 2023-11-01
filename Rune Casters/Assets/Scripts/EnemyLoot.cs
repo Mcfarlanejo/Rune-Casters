@@ -6,8 +6,8 @@ public class EnemyLoot : MonoBehaviour
 {
     public Rarity rarity;
 
-    public void DropLoot()
+    public void DropLoot(Transform t)
     {
-        LootManager.instance.GetItem(rarity, gameObject.transform);
+        LootManager.instance.GetItem(rarity, t);
     }
 }

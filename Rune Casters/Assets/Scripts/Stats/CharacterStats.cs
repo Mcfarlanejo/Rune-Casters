@@ -73,7 +73,7 @@ public class CharacterStats : MonoBehaviour
     {
         if (gameObject.tag == "Enemy")
         {
-            GetComponent<EnemyLoot>().DropLoot();
+            GetComponent<EnemyLoot>().DropLoot(gameObject.transform);
             
             Destroy(gameObject);
         }
