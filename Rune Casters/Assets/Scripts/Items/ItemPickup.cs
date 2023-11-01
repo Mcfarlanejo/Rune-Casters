@@ -30,7 +30,10 @@ public class ItemPickup : Interactable
     public override void Interact()
     {
         base.Interact();
-        PickUp();
+        if (canPickup)
+        {
+            PickUp();
+        }
     }
 
     void PickUp()

@@ -7,6 +7,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public float radius = 1.0f;
+    public bool canPickup = false;
 
     private void Awake()
     {

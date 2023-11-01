@@ -27,7 +27,10 @@ public class RunePickup : Interactable
     public override void Interact()
     {
         base.Interact();
-        PickUp();
+        if (canPickup)
+        {
+            PickUp();
+        }
     }
 
     void PickUp()

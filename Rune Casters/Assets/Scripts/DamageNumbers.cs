@@ -19,7 +19,11 @@ public class DamageNumbers : MonoBehaviour
     {
         Transform t = GetComponent<Transform>();
         
-        t.position = p.position + new Vector3(0, yIncrease);
+        if (t != null)
+        {
+            t.position = p.position + new Vector3(0, yIncrease);
+        }
+
         yIncrease += 0.005f;
     }
 

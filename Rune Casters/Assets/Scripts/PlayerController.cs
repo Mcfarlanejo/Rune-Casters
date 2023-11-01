@@ -67,6 +67,19 @@ public class PlayerController : MonoBehaviour
         horizontalMovement = movementJoystick.Horizontal * 5;
         verticalMovement = movementJoystick.Vertical * 5;
 
+        if (rotationJoystick.Horizontal < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if(movementJoystick.Horizontal < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+
         rb.velocity = new Vector2(horizontalMovement, verticalMovement);
 
         float rotationAngle = Mathf.Atan2(rotationJoystick.Horizontal, rotationJoystick.Vertical) * Mathf.Rad2Deg;
