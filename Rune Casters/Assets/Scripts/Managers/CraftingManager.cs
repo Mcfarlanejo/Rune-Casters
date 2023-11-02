@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -61,22 +62,20 @@ public class CraftingManager : MonoBehaviour
 
     private void LoadRunes()
     {
-        string[] guids = AssetDatabase.FindAssets("t:Rune", null);
+        castingRunes = Resources.LoadAll("Runes", typeof(CastingRune)).Cast<CastingRune>().ToList();
+        List<Rune> temp = Resources.LoadAll("Runes", typeof(Rune)).Cast<Rune>().ToList();
 
-        foreach (string id in guids)
+        
+        for (int i = 0; i < temp.Count; i++)
         {
-            Rune rune = AssetDatabase.LoadAssetAtPath<Rune>(AssetDatabase.GUIDToAssetPath(id));
-            if (rune is CastingRune)
+            if (temp[i] is not CastingRune)
             {
-                Debug.Log("Casting");
-                castingRunes.Add(rune as CastingRune);
-            }
-            else
-            {
-                Debug.Log("Element");
-                elementalRunes.Add(rune);
+                elementalRunes.Add(temp[i]);
             }
         }
+
+        Debug.Log("Casting: " + castingRunes.Count);
+        Debug.Log("Elemental: " + elementalRunes.Count);
     }
 
     // Update is called once per frame
