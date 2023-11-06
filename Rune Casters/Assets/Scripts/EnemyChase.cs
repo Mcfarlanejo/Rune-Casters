@@ -18,7 +18,7 @@ public class EnemyChase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = PlayerStats.instance.gameObject;
     }
 
     // Update is called once per frame
