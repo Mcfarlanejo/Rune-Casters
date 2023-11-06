@@ -68,7 +68,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text value2;
     public TMP_Text value3;
     public TMP_Text value4;
-    
+
+    public GameObject deathScreen;
 
     private void Start()
     {

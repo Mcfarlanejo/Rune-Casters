@@ -83,6 +83,7 @@ public class PlayerStats : CharacterStats
 
     public override void Die()
     {
-        //Do Death stuff
+        healthBar.gameObject.SetActive(false);
+        UIManager.instance.deathScreen.SetActive(true);
     }
 }
