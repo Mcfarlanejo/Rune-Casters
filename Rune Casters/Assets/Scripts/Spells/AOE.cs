@@ -66,9 +66,9 @@ public class AOE : MonoBehaviour
         }
 
         speed = new Vector3(spell.speed, spell.speed, 0);
-        range = spell.range/2;
+        range = (spell.range/2) + 1;
 
-        startScale = transform.localScale;
+        startScale = transform.localScale/2;
 
         SetColour();
     }
