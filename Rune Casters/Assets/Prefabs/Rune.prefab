@@ -158,7 +158,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: -131498863, guid: 4178fedc1339a7c4aaeaa7512c8df5c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -183,5 +183,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 1
+  canPickup: 0
   rune: {fileID: 11400000, guid: 7dae1b1ef65ac8f46befd60f35bafd75, type: 2}
   highlight: {fileID: 155181947199477292}

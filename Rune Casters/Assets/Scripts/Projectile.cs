@@ -71,11 +71,11 @@ public class Projectile : MonoBehaviour
         speed = spell.speed;
         range = spell.range;
 
-        startPos = transform.position;
+        startPos = PlayerController.instance.firePoint.transform.position;
 
         SetColour();
 
-        rb.velocity = transform.position * speed;
+        rb.AddForce(-transform.right * speed * 100);
     }
 
     private void Update()

@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     public Joystick movementJoystick;
     public Joystick rotationJoystick;
+    public Vector3 aimVelocity;
 
     private float horizontalMovement = 0;
     private float verticalMovement = 0;
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
         if (rotationJoystick.Horizontal != 0 || rotationJoystick.Vertical != 0)
         {
             if (canAttack)
-            {                
+            {
                 canAttack = false;
                 Fire();
                 StartCoroutine(FireDelay());
@@ -101,6 +102,7 @@ public class PlayerController : MonoBehaviour
         GameObject newSpell = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         newSpell.GetComponent<Projectile>().spell = activeProjectile;
         newSpell.GetComponent<Projectile>().parent = gameObject;
+        //newSpell.GetComponent<Rigidbody2D>().AddForce(transform.forward * newSpell.GetComponent<Projectile>().speed * 1000);
     }
 
     private IEnumerator FireDelay()
