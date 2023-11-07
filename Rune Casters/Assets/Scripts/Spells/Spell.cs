@@ -35,6 +35,6 @@ public abstract class Spell : MonoBehaviour
             stat = Random.Range(statMin, statMax + 1);
         }
 
-        stat *= (int)element;
+        stat *= (int)rarity + 1;
     }
 }

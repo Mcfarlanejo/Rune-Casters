@@ -75,7 +75,7 @@ public class AOE : MonoBehaviour
 
     private void Update()
     {
-        transform.localScale += speed * Time.deltaTime;
+        transform.localScale += (speed * Time.deltaTime)/2;
         float traveled = Vector2.Distance(transform.localScale, startScale);
         if (traveled > range)
         {
