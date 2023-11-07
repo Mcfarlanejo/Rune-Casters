@@ -28,5 +28,5 @@ public class AudioManager : MonoBehaviour
     public AudioSource enemyHit;
     public AudioSource spellCast;
     public AudioSource itemPickup;
-
+    public AudioSource playerHit;
 }

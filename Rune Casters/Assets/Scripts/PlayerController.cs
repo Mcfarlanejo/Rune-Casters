@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,8 +53,14 @@ public class PlayerController : MonoBehaviour
 
     public AOESpell activeAOE;
     public Button aoeButton;
+    public TMP_Text countdownAOE;
+    public float aoeTimer = 0;
+
     public SelfSpell activeSelfSpell;
     public Button selfButton;
+    public TMP_Text countdownSelf;
+    public float selfTimer = 0;
+    public TMP_Text selfBuffText;
 
     private void Start()
     {
@@ -96,6 +103,19 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(FireDelay());
             }
         }
+
+        if (aoeTimer != 0)
+        {
+            aoeTimer -= Time.deltaTime;
+
+            countdownAOE.text = Convert.ToInt32(aoeTimer).ToString();
+        }
+        if (selfTimer != 0)
+        {
+            selfTimer -= Time.deltaTime;
+            
+            countdownSelf.text = Convert.ToInt32(selfTimer).ToString();
+        }
     }
 
     private void Fire()
@@ -103,7 +123,6 @@ public class PlayerController : MonoBehaviour
         GameObject newSpell = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         newSpell.GetComponent<Projectile>().spell = activeProjectile;
         newSpell.GetComponent<Projectile>().parent = gameObject;
-        //newSpell.GetComponent<Rigidbody2D>().AddForce(transform.forward * newSpell.GetComponent<Projectile>().speed * 1000);
     }
 
     private IEnumerator FireDelay()
@@ -134,9 +153,13 @@ public class PlayerController : MonoBehaviour
     {
         if (activeAOE != null) 
         { 
+            countdownAOE.gameObject.SetActive(true);
+            
             GameObject newSpell = Instantiate(aoePrefab, gameObject.transform.position, Quaternion.identity);
             newSpell.GetComponent<AOE>().spell = activeAOE;
             newSpell.GetComponent<AOE>().parent = gameObject;
+            aoeTimer = 60 - newSpell.GetComponent<AOE>().spell.castDelay;
+
             AudioManager.instance.spellCast.Play();
             StartCoroutine(AOEDelay(activeAOE.castDelay));
         }
@@ -147,13 +170,37 @@ public class PlayerController : MonoBehaviour
         aoeButton.interactable = false;
         yield return new WaitForSeconds(60 - delay);
         aoeButton.interactable = true;
+        aoeTimer = 0;
+        countdownAOE.gameObject.SetActive(false);
     }
 
     public void CastSelf()
     {
         if (activeSelfSpell != null)
         {
+            countdownSelf.gameObject.SetActive(true);
+            selfBuffText.gameObject.SetActive(true);
+            string temp = "";
+            switch (activeSelfSpell.element)
+            {
+                case Element.Fire:
+                    temp = "DMG UP";
+                    break;
+                case Element.Earth:
+                    temp = "DEF UP";
+                    break;
+                case Element.Water:
+                    temp = "C-SPD UP";
+                    break;
+                case Element.Wind:
+                    temp = "SPD UP";
+                    break;
+            }
+            selfBuffText.text = temp;
+
             PlayerStats.instance.AddTempStats(activeSelfSpell);
+            selfTimer = 60 - activeSelfSpell.castDelay;
+
             AudioManager.instance.spellCast.Play();
             StartCoroutine(SelfDelay(activeSelfSpell.castDelay));
         }
@@ -164,5 +211,8 @@ public class PlayerController : MonoBehaviour
         selfButton.interactable = false;
         yield return new WaitForSeconds(60 - delay);
         selfButton.interactable = true;
+        selfTimer = 0;
+        countdownSelf.gameObject.SetActive(false);
+        selfBuffText.gameObject.SetActive(false);
     }
 }

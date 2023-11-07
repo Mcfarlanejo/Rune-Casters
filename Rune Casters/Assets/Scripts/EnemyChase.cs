@@ -60,6 +60,7 @@ public class EnemyChase : MonoBehaviour
         if (collision.gameObject.tag == "Player" && canDamage)
         {
             collision.gameObject.GetComponent<PlayerStats>().TakeDamage(characterStats.damage.GetValue());
+            AudioManager.instance.playerHit.Play();
             StartCoroutine(DamageDelay());
         }
     }
