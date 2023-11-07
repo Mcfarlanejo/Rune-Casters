@@ -32,6 +32,7 @@ public class ItemPickup : Interactable
         if (canPickup)
         {
             PickUp();
+            AudioManager.instance.itemPickup.Play();
         }
     }
 

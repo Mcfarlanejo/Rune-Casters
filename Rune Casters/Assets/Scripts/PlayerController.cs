@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
             {
                 canAttack = false;
                 Fire();
+                AudioManager.instance.spellCast.Play();
                 StartCoroutine(FireDelay());
             }
         }
@@ -121,17 +122,24 @@ public class PlayerController : MonoBehaviour
 
     public void SetProjectileTwoActive()
     {
-        activeProjectile = projectileTwo;
-        projectileOneButton.gameObject.GetComponent<Image>().enabled = false;
-        projectileTwoButton.gameObject.GetComponent<Image>().enabled = true;
+        if (projectileTwo != null)
+        {
+            activeProjectile = projectileTwo;
+            projectileOneButton.gameObject.GetComponent<Image>().enabled = false;
+            projectileTwoButton.gameObject.GetComponent<Image>().enabled = true;
+        }
     }
 
     public void CastAOE()
     {
-        GameObject newSpell = Instantiate(aoePrefab, gameObject.transform.position, Quaternion.identity);
-        newSpell.GetComponent<AOE>().spell = activeAOE;
-        newSpell.GetComponent<AOE>().parent = gameObject;
-        StartCoroutine(AOEDelay(activeAOE.castDelay));
+        if (activeAOE != null) 
+        { 
+            GameObject newSpell = Instantiate(aoePrefab, gameObject.transform.position, Quaternion.identity);
+            newSpell.GetComponent<AOE>().spell = activeAOE;
+            newSpell.GetComponent<AOE>().parent = gameObject;
+            AudioManager.instance.spellCast.Play();
+            StartCoroutine(AOEDelay(activeAOE.castDelay));
+        }
     }
 
     public IEnumerator AOEDelay(float delay)
@@ -143,8 +151,12 @@ public class PlayerController : MonoBehaviour
 
     public void CastSelf()
     {
-        PlayerStats.instance.AddTempStats(activeSelfSpell);
-        StartCoroutine(SelfDelay(activeSelfSpell.castDelay));
+        if (activeSelfSpell != null)
+        {
+            PlayerStats.instance.AddTempStats(activeSelfSpell);
+            AudioManager.instance.spellCast.Play();
+            StartCoroutine(SelfDelay(activeSelfSpell.castDelay));
+        }
     }
 
     public IEnumerator SelfDelay(float delay)

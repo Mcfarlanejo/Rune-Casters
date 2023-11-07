@@ -50,6 +50,7 @@ public class CharacterStats : MonoBehaviour
         if (gameObject.tag != "Player")
         {
             ShowDamageNumber(damage);
+            AudioManager.instance.enemyHit.Play();
         }
         
 
