@@ -117,10 +117,17 @@ public class CraftingManager : MonoBehaviour
         if (!CheckForValidCraft())
         {
             createButton.interactable = false;
+
+            resultText.text = "-";
+            resultRarity.text = "-";
+
         }
         else
         {
             createButton.interactable = true;
+
+            resultText.text = $"{elementText.text} {castingText.text}";
+            resultRarity.text = $"{resultingRarity}";
         }
     }
 
